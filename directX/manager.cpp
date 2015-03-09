@@ -108,6 +108,12 @@ void CManager::Uninit(void)
 
 	// レンダラー
 	SAFE_END(m_renderer);
+
+	// インポート
+	SAFE_END(m_import);
+
+	// 解放忘れをしない為
+	CScene::ReleaseAll();
 }
 
 //=============================================================================
