@@ -10,6 +10,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "renderer.h"
 #include "debugproc.h"
+#include "listObject.h"
 
 //=============================================================================
 // コンストラクタ
@@ -153,6 +154,8 @@ void CRenderer::Uninit(void)
 //=============================================================================
 void CRenderer::Update(void)
 {
+	// オブジェクト更新
+	CListObject::Update();
 }
 
 //=============================================================================
@@ -165,8 +168,12 @@ void CRenderer::Draw(void)
 		// バックバッファ＆Ｚバッファのクリア
 		m_device->Clear(0, NULL, (D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER), D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
 
-		// デバック表示
+		// オブジェクト
+		CListObject::Draw();
+
+#ifdef _DEBUG
 		m_debugproc->Draw();
+#endif
 
 		m_device->EndScene();	// 終了
 	}

@@ -23,6 +23,9 @@
     <Filter Include="view">
       <UniqueIdentifier>{2421077c-becb-4b75-a95c-81f38b26622d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="phase">
+      <UniqueIdentifier>{1fa324ed-f41a-417b-abb7-0b6f9d9acf19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
@@ -88,6 +91,21 @@
     <ClCompile Include="light.cpp">
       <Filter>view</Filter>
     </ClCompile>
+    <ClCompile Include="fade.cpp">
+      <Filter>phase</Filter>
+    </ClCompile>
+    <ClCompile Include="phase.cpp">
+      <Filter>phase</Filter>
+    </ClCompile>
+    <ClCompile Include="result.cpp">
+      <Filter>phase</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>phase</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>phase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -152,6 +170,21 @@
     </ClInclude>
     <ClInclude Include="light.h">
       <Filter>view</Filter>
+    </ClInclude>
+    <ClInclude Include="fade.h">
+      <Filter>phase</Filter>
+    </ClInclude>
+    <ClInclude Include="phase.h">
+      <Filter>phase</Filter>
+    </ClInclude>
+    <ClInclude Include="result.h">
+      <Filter>phase</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>phase</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>phase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

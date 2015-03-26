@@ -42,6 +42,7 @@ public:
 		OBJTYPE_FIELD,
 		OBJTYPE_DOME,
 		OBJTYPE_CYLINDER,
+		OBJTYPE_FADE,
 	} OBJTYPE;
 
 	typedef enum

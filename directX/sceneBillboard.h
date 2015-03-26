@@ -46,6 +46,8 @@ public:
 	void		SetTexcord(int n, D3DXVECTOR2 texcord){m_texcord[n] = texcord; SetVertexPolygon();}
 	D3DXVECTOR2	GetTexcord(int n){return m_texcord[n];}
 
+	static void SetMtxView(D3DXMATRIX mtxView){m_view = mtxView;}
+
 protected:
 	void SetVertexPolygon(void);
 
@@ -58,8 +60,8 @@ protected:
 	int m_numVtxIndex;	// 頂点の総インデックス数
 	int m_numPolygon;	// 総ポリゴン数
 
-	D3DXMATRIX	m_view;			// ビュー行列
-	D3DXVECTOR2 m_texcord[4];	// テクスチャ座標
+	static D3DXMATRIX m_view;		// ビュー行列
+	D3DXVECTOR2		 m_texcord[4];	// テクスチャ座標
 };
 
 //=============================================================================

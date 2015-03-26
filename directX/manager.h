@@ -20,6 +20,7 @@
 class CRenderer;
 class CDebugproc;
 class CImport;
+class CPhase;
 
 class CInputKeyboard;
 
@@ -37,10 +38,15 @@ public:
 
 	void	CalculateFPS(DWORD frameCnt, DWORD curTime, DWORD FPSLastTime);
 
+	static void SetNextPhase(CPhase* phase){m_phaseNext = phase;}
+
 private:
 	CRenderer*	m_renderer;
 	CDebugproc*	m_debugproc;
 	CImport*	m_import;
+
+	CPhase*	m_phase;
+	static CPhase*	m_phaseNext;
 
 	CInputKeyboard*	m_keyboard;
 };
