@@ -1,54 +1,52 @@
 //*****************************************************************************
 //
-// CManagerクラス [manager.h]
+// CGameクラス [game.h]
 // Author :MAI TANABE
 //
 //*****************************************************************************
 
-#ifndef _MY_MANAGER_H
-#define _MY_MANAGER_H
+#ifndef _MY_GAME_H
+#define _MY_GAME_H
 //=============================================================================
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // インクルードファイル
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "main.h"
+#include "phase.h"
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// マクロ定義
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // クラス定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class CRenderer;
-class CDebugproc;
-class CImport;
-class CPhase;
+class CCamera;
+class CLight;
 
-class CInputKeyboard;
-
-class CManager
+class CGame : CPhase
 {
 public:
-	CManager();
-	~CManager(){};
+	CGame(void){};
+	~CGame(){};
 
-	static	CManager* Create(HINSTANCE instance, HWND wnd, bool window);
-	HRESULT	Init(HINSTANCE instance, HWND wnd, bool window);
+	HRESULT	Init(LPDIRECT3DDEVICE9 device);
 	void	Uninit(void);
 	void	Update(void);
 	void	Draw(void);
 
-	void	CalculateFPS(DWORD frameCnt, DWORD curTime, DWORD FPSLastTime);
-
-	static void SetNextPhase(CPhase* phase){m_phaseNext = phase;}
+	static CCamera* GetCamera(void){return m_camera;}
 
 private:
-	CRenderer*	m_renderer;
-	CDebugproc*	m_debugproc;
-	CImport*	m_import;
+	void InitObject(LPDIRECT3DDEVICE9 device);
+	void UpdateCamera(void);
+	void Debug(void);
 
-	CPhase*	m_phase;
-	static CPhase*	m_phaseNext;
+	static CCamera*		m_camera;
+	CLight*	m_light[3];
 
-	CInputKeyboard*	m_keyboard;
+	int		m_cameraDisNo;
 };
 
 //=============================================================================

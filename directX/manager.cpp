@@ -14,9 +14,19 @@
 #include "debugproc.h"
 #include "import.h"
 
+#include "phase.h"
+#include "title.h"
+#include "game.h"
+#include "result.h"
+
 #include "inputKeyboard.h"
 
 #include "scene2D.h"
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// 静的変数
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPhase* CManager::m_phaseNext = NULL;
 
 //=============================================================================
 // コンストラクタ
@@ -73,6 +83,11 @@ HRESULT CManager::Init(HINSTANCE instance, HWND wnd, bool window)
 	//----------------------------
 	// フェーズ
 	//----------------------------
+	m_phase = (CPhase*)new CTitle;
+	m_phase->Init(device);
+	m_phase->SetKeyboard(m_keyboard);
+
+	m_phaseNext = m_phase;
 
 	//----------------------------
 	// 入力設定
@@ -96,10 +111,14 @@ void CManager::Uninit(void)
 	//----------------------------
 	// フェーズ
 	//----------------------------
+	SAFE_END(m_phase);
 
 	//----------------------------
 	// 共通部
 	//----------------------------
+	// インポート
+	SAFE_END(m_import);
+
 	// デバッグ表示
 	SAFE_END(m_debugproc);
 
@@ -108,9 +127,6 @@ void CManager::Uninit(void)
 
 	// レンダラー
 	SAFE_END(m_renderer);
-
-	// インポート
-	SAFE_END(m_import);
 
 	// 解放忘れをしない為
 	CScene::ReleaseAll();
@@ -138,6 +154,10 @@ void CManager::Update(void)
 	//----------------------------
 	// フェーズ
 	//----------------------------
+	if(m_phase != NULL)
+	{
+		m_phase->Update();
+	}
 
 	//----------------------------
 	// レンダラー、サウンド
@@ -148,6 +168,15 @@ void CManager::Update(void)
 	//----------------------------
 	// フェーズ切替
 	//----------------------------
+	if(m_phaseNext != m_phase)
+	{
+		// 現在フェーズを破棄
+		SAFE_END(m_phase);
+
+		// 次のフェーズを生成・初期化
+		m_phase = m_phaseNext;
+		m_phase->Init(m_renderer->GetDevice());
+	}
 }
 
 //=============================================================================
@@ -158,6 +187,10 @@ void CManager::Draw(void)
 	//----------------------------
 	// フェーズ
 	//----------------------------
+	if(m_phase != NULL)
+	{
+		m_phase->Draw();
+	}
 
 	//----------------------------
 	// レンダラー

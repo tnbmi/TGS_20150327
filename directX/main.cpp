@@ -89,6 +89,12 @@ int APIENTRY WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, 
 						NULL);
 
 	//----------------------------
+	// ウインドウの表示(初期化処理の後に呼ばないと駄目)
+	//----------------------------
+	ShowWindow(wnd, cmdShow);
+	UpdateWindow(wnd);
+
+	//----------------------------
 	// 初期化処理
 	//----------------------------
 	// マネージャ
@@ -101,12 +107,6 @@ int APIENTRY WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, 
 	curTime	 = 0;					// 現在時刻とカウントの初期化
 	frameCnt	 = curTime;
 
-	//----------------------------
-	// ウインドウの表示(初期化処理の後に呼ばないと駄目)
-	//----------------------------
-	ShowWindow(wnd, cmdShow);
-	UpdateWindow(wnd);
-	
 	//----------------------------
 	// メッセージループ
 	//----------------------------

@@ -1,12 +1,12 @@
 //*****************************************************************************
 //
-// CManagerクラス [manager.h]
+// CPhaseクラス [phase.h]
 // Author :MAI TANABE
 //
 //*****************************************************************************
 
-#ifndef _MY_MANAGER_H
-#define _MY_MANAGER_H
+#ifndef _MY_PHAZE_H
+#define _MY_PHAZE_H
 //=============================================================================
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -17,38 +17,36 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // クラス定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class CRenderer;
-class CDebugproc;
-class CImport;
-class CPhase;
-
+class CFade;
 class CInputKeyboard;
+class CInputMouse;
+class CInputPadX;
 
-class CManager
+class CPhase
 {
 public:
-	CManager();
-	~CManager(){};
+	CPhase(void){};
+	~CPhase(){};
 
-	static	CManager* Create(HINSTANCE instance, HWND wnd, bool window);
-	HRESULT	Init(HINSTANCE instance, HWND wnd, bool window);
-	void	Uninit(void);
-	void	Update(void);
-	void	Draw(void);
+	virtual HRESULT	Init(LPDIRECT3DDEVICE9 device) = 0;
+	virtual void	Uninit(void) = 0;
+	virtual void	Update(void) = 0;
+	virtual void	Draw(void)	 = 0;
 
-	void	CalculateFPS(DWORD frameCnt, DWORD curTime, DWORD FPSLastTime);
+	static CFade*	GetFade(void){return m_fade;}
 
-	static void SetNextPhase(CPhase* phase){m_phaseNext = phase;}
+	void SetKeyboard(CInputKeyboard* keyboard){m_keyboard = keyboard;}
+	void SetMouse(CInputMouse* mouse){m_mouse = mouse;}
+	void SetPadX(CInputPadX* padX){m_padX = padX;}
 
-private:
-	CRenderer*	m_renderer;
-	CDebugproc*	m_debugproc;
-	CImport*	m_import;
+protected:
+	LPDIRECT3DDEVICE9 m_device;	// Deviceオブジェクト(デバイスへのポインタ)
 
-	CPhase*	m_phase;
-	static CPhase*	m_phaseNext;
+	static CFade* m_fade;
 
-	CInputKeyboard*	m_keyboard;
+	static CInputKeyboard*	m_keyboard;
+	static CInputMouse*		m_mouse;
+	static CInputPadX*		m_padX;
 };
 
 //=============================================================================

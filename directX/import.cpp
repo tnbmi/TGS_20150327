@@ -17,6 +17,7 @@
 const char* TEX_PATH[] =
 {
 	NULL,
+	"./data/TEXTURE/fade000.png",
 };
 
 // Xƒtƒ@ƒCƒ‹

@@ -44,6 +44,7 @@ public:
 	typedef enum
 	{
 		TEX_NONE = 0,
+		TEX_FADE,
 		TEX_MAX
 	} TEXTURES;
 

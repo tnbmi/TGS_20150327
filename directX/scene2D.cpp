@@ -31,7 +31,6 @@ CScene2D::CScene2D(int priority, OBJTYPE objType) : CScene(priority, objType)
 	D3DXVECTOR2 half = D3DXVECTOR2(m_size.x / 2.0f, m_size.y / 2.0f);
 	m_length = DISTANCE_2D(half.x, half.y);
 	m_angle	 = atan2f(half.x, half.y);
-
 }
 
 //=============================================================================

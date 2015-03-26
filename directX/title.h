@@ -1,54 +1,36 @@
 //*****************************************************************************
 //
-// CManagerクラス [manager.h]
+// CTitleクラス [title.h]
 // Author :MAI TANABE
 //
 //*****************************************************************************
 
-#ifndef _MY_MANAGER_H
-#define _MY_MANAGER_H
+#ifndef _MY_TITLE_H
+#define _MY_TITLE_H
 //=============================================================================
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // インクルードファイル
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "main.h"
+#include "phase.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // クラス定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class CRenderer;
-class CDebugproc;
-class CImport;
-class CPhase;
-
-class CInputKeyboard;
-
-class CManager
+class CTitle : CPhase
 {
 public:
-	CManager();
-	~CManager(){};
+	CTitle(void){};
+	~CTitle(){};
 
-	static	CManager* Create(HINSTANCE instance, HWND wnd, bool window);
-	HRESULT	Init(HINSTANCE instance, HWND wnd, bool window);
+	HRESULT	Init(LPDIRECT3DDEVICE9 device);
 	void	Uninit(void);
 	void	Update(void);
 	void	Draw(void);
 
-	void	CalculateFPS(DWORD frameCnt, DWORD curTime, DWORD FPSLastTime);
-
-	static void SetNextPhase(CPhase* phase){m_phaseNext = phase;}
-
 private:
-	CRenderer*	m_renderer;
-	CDebugproc*	m_debugproc;
-	CImport*	m_import;
-
-	CPhase*	m_phase;
-	static CPhase*	m_phaseNext;
-
-	CInputKeyboard*	m_keyboard;
+	void InitObject(LPDIRECT3DDEVICE9 device);
 };
 
 //=============================================================================
