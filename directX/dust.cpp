@@ -25,18 +25,12 @@ CDust::CDust(int priority, OBJTYPE objType) : CSceneX(priority, objType)
 
 	m_rot	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_pos	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_posDest = m_pos;
-	m_posOld = m_pos;
 	m_scl	= D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 	m_size	= D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 	m_color	= D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 
 	m_parent	= NULL;
 	m_AI		= NULL;
-
-	m_FrontVector = D3DXVECTOR3(0.0f,0.0f,-1.0f);
-	m_RightVector = D3DXVECTOR3(-1.0f,0.0f,0.0f);
-	m_RotPower = D3DXVECTOR3(0,0,0);
 }
 
 //=============================================================================
@@ -89,38 +83,7 @@ void CDust::Uninit(void)
 //=============================================================================
 void CDust::Update(void)
 {
-	// AIXV
-	m_AI->Update();
-
-	// ˆÚ“®
-	m_posOld = m_pos;
-	D3DXVECTOR3 front = m_FrontVector;
-	D3DXVECTOR3 right = m_RightVector;
-	D3DXVECTOR3 vecTarget = m_posDest - m_pos;
-
-	D3DXVec3Normalize(&vecTarget,&vecTarget);
-	float dot = D3DXVec3Dot(&right,&vecTarget);
-	m_RotPower.y += dot * DUST_ROTATION_SPEED;
-
-	float frontDot = D3DXVec3Dot(&front,&vecTarget);
-	if(frontDot < -0.95f)
-	{
-		m_RotPower.y += DUST_ROTATION_SPEED;
-	}
-
-	if(frontDot > -0.2f)
-	{
-		m_pos += front * DUST_MOVE_SPEED;
-	}
-
-	front.x = sinf(-m_RotPower.y);
-	front.z = cosf(m_RotPower.y - D3DX_PI);
-
-	right.x = cosf(m_RotPower.y - D3DX_PI);
-	right.z = sinf(m_RotPower.y);
-
-	m_FrontVector = front;
-	m_RightVector = right;
+	//m_AI->Update();
 }
 
 //=============================================================================

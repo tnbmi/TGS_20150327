@@ -30,7 +30,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // カメラ
-#define CAMERA_POS			D3DXVECTOR3(0.0f, 50.0f, -150.0f)
+#define CAMERA_POS			D3DXVECTOR3(0.0f, 100.0f, -150.0f)
 #define CAMERA_DEBUG_POS	D3DXVECTOR3(0.0f, 500.0f, -1000.0f)
 
 // ライト
@@ -66,10 +66,10 @@ HRESULT CGame::Init(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// カメラ
 	//----------------------------
-	m_camera = CCamera::Create(D3DXVECTOR3(0.0f, 15.0f, 0.0f), CAMERA_POS);
+	m_camera = CCamera::Create(D3DXVECTOR3(0.0f, 20.0f, 0.0f), CAMERA_POS);
 
 	m_dcFlg = false;
-	m_debugCamera = CCamera::Create(D3DXVECTOR3(0.0f, 15.0f, 0.0f), CAMERA_DEBUG_POS);
+	m_debugCamera = CCamera::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), CAMERA_DEBUG_POS);
 
 	//----------------------------
 	// ライト
@@ -344,7 +344,7 @@ void CGame::UpdateCamera(void)
 	pos.y = sinf(rot.x) * distance;
 
 	// プレイヤーが移動中
-	if(abs(targetSpeed.x) >= 0.1f || abs(targetSpeed.z) >= 0.1f)
+	//if(abs(targetSpeed.x) >= 0.1f || abs(targetSpeed.z) >= 0.1f)
 	{
 		D3DXVECTOR2 vec[2];
 
@@ -360,7 +360,7 @@ void CGame::UpdateCamera(void)
 		float dot = D3DXVec2Dot(&vec[0], &vec[1]);
 
 		// 鋭角ならば回りこむ
-		if(dot > 0.0f)
+		//if(dot > 0.0f)
 		{
 			posDest.x = -targetVecF.x * cosf(rot.x) * distance;
 			posDest.z = -targetVecF.z * cosf(rot.x) * distance;
