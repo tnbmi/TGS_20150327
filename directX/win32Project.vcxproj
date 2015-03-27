@@ -78,6 +78,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="dust.cpp" />
+    <ClCompile Include="dustAI.cpp" />
     <ClCompile Include="dustManager.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="dust.h" />
+    <ClInclude Include="dustAI.h" />
     <ClInclude Include="dustManager.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="game.h" />

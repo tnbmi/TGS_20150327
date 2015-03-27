@@ -20,6 +20,11 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// 前方宣言
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CDustAI;
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // クラス定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class CDust : public CSceneX
@@ -35,9 +40,17 @@ public:
 	void	Update(void);
 	void	Draw(void);
 
-	void SetParent(CSceneX* parent){m_parent = parent;}
+	D3DXVECTOR3 GetFrontVector(void){return m_FrontVector;}
+	void SetFrontVector(D3DXVECTOR3 flont){m_FrontVector = flont;}
+	D3DXVECTOR3 GetRightVector(void){return m_RightVector;}
+	void SetRightVector(D3DXVECTOR3 right){m_RightVector = right;}
 
 private:
+
+	D3DXVECTOR3 m_FrontVector;
+	D3DXVECTOR3 m_RightVector;
+
+	CDustAI* m_AI;
 };
 
 //=============================================================================

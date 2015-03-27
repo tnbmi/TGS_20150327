@@ -9,6 +9,7 @@
 // インクルードファイル
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "dust.h"
+#include "dustAI.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ定義
@@ -28,7 +29,8 @@ CDust::CDust(int priority, OBJTYPE objType) : CSceneX(priority, objType)
 	m_size	= D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 	m_color	= D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 
-	m_parent = NULL;
+	m_parent	= NULL;
+	m_AI		= NULL;
 }
 
 //=============================================================================
@@ -56,6 +58,11 @@ HRESULT CDust::Init(LPDIRECT3DDEVICE9 device, CImport::XFILES xFile)
 	//----------------------------
 	m_xFile = CImport::GetXFile(xFile);
 
+	//----------------------------
+	// AI生成
+	//----------------------------
+	m_AI = CDustAI::Create(this);
+
 	return S_OK;
 }
 
@@ -66,6 +73,9 @@ void CDust::Uninit(void)
 {
 	// 開放
 	CScene::Delete();
+
+	// AI解放
+	SAFE_DELETE(m_AI);
 }
 
 //=============================================================================
@@ -73,6 +83,7 @@ void CDust::Uninit(void)
 //=============================================================================
 void CDust::Update(void)
 {
+	m_AI->Update();
 }
 
 //=============================================================================
