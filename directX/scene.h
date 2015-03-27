@@ -43,6 +43,7 @@ public:
 		OBJTYPE_DOME,
 		OBJTYPE_CYLINDER,
 		OBJTYPE_FADE,
+		OBJTYPE_ENEMY,
 	} OBJTYPE;
 
 	typedef enum

@@ -20,14 +20,14 @@
 #include "light.h"
 
 #include "sceneBillboard.h"
-#include "meshField.h"
+#include "sceneX.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // カメラ
-#define CAMERA_POS	D3DXVECTOR3(0.0f, 500.0f, -1000.0f)
+#define CAMERA_POS	D3DXVECTOR3(0.0f, 10.0f, -20.0f)
 
 // ライト
 #define LIGHT_MAX	(3)
@@ -48,6 +48,9 @@ const D3DCOLORVALUE LIGHT_DIFFUSE[LIGHT_MAX] =
 // 静的変数
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 CCamera*	CGame::m_camera	= NULL;
+
+// 仮置き
+CSceneX* enemy = NULL;
 
 //=============================================================================
 // 初期化
@@ -189,19 +192,11 @@ void CGame::Debug(void)
 //=============================================================================
 void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 {
-	//----------------------------
-	// フィールド
-	//----------------------------
-	D3DXVECTOR3 size = D3DXVECTOR3(100.0f, 0.0f, 100.0f);
-	D3DXVECTOR3 num  = D3DXVECTOR3(10.0f, 0.0f, 10.0f);
-	float*		heightVtx = nullptr;
+	// 壁
+	//CSceneX::Create(device,CImport::X_WALL);
 
-	m_field = CMeshField::Create(device,
-								 CImport::TEX_FIELD,
-								 size,
-								 num,
-								 heightVtx,
-								 CScene::MESHTEX_PATCH);
+	// 敵
+	enemy = CSceneX::Create(device,CImport::X_ENEMY);
 }
 
 //=============================================================================

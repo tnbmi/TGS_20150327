@@ -18,13 +18,14 @@ const char* TEX_PATH[] =
 {
 	NULL,
 	"./data/TEXTURE/fade000.png",
-	"./data/TEXTURE/concrete.jpg",
 };
 
 // Xファイル
 const char* X_PATH[] =
 {
 	NULL,
+	"./data/MODEL/wall.x",
+	"./data/MODEL/enemy.x",
 };
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -121,25 +122,24 @@ HRESULT CImport::Init(LPDIRECT3DDEVICE9 device)
 void CImport::Uninit(void)
 {
 	//----------------------------
-	// Xファイル
-	//----------------------------
-	for(int cnt = 0; cnt < X_MAX; cnt++)
-	{
-		// テクスチャポインタ解放
-		SAFE_DELETE(m_xFile[cnt].tex);
-
-		// メッシュ情報の開放
-		SAFE_RELEASE(m_xFile[cnt].mesh);
-
-		// マテリアル情報の開放
-		SAFE_RELEASE(m_xFile[cnt].buffMat);
-	}
-
-	//----------------------------
 	// テクスチャ
 	//----------------------------
 	for(int cnt = 0; cnt < TEX_MAX; cnt++)
 	{
 		SAFE_RELEASE(m_tex[cnt]);
+	}
+
+	//----------------------------
+	// Xファイル
+	//----------------------------
+	for(int cnt = 0; cnt < X_MAX; cnt++)
+	{
+		// メッシュ情報の開放
+		SAFE_RELEASE(m_xFile[cnt].mesh);
+
+		// マテリアル情報の開放
+		SAFE_RELEASE(m_xFile[cnt].buffMat);
+
+		SAFE_DELETE(m_xFile[cnt].tex);
 	}
 }
