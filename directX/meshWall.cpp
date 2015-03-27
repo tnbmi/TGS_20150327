@@ -124,9 +124,6 @@ HRESULT CMeshWall::Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture, D3D
 //=============================================================================
 void CMeshWall::Uninit(void)
 {
-	// テクスチャの開放
-	SAFE_RELEASE(m_tex);
-
 	// 頂点バッファの開放
 	SAFE_RELEASE(m_vtxBuff);
 
