@@ -44,23 +44,22 @@ CSceneBillboard::CSceneBillboard(int priority, OBJTYPE objType) : CScene(priorit
 //=============================================================================
 // 生成
 //=============================================================================
-CSceneBillboard* CSceneBillboard::Create(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture, D3DXMATRIX view)
+CSceneBillboard* CSceneBillboard::Create(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture)
 {
 	CSceneBillboard* pointer = new CSceneBillboard;
-	pointer->Init(device, texture, view);
+	pointer->Init(device, texture);
 	return pointer;
 }
 
 //=============================================================================
 // 初期化
 //=============================================================================
-HRESULT CSceneBillboard::Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture, D3DXMATRIX view)
+HRESULT CSceneBillboard::Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture)
 {
 	//----------------------------
 	// デバイス・ビュー行列取得
 	//----------------------------
 	m_device = device;
-	m_view	 = view;
 
 	//----------------------------
 	// ポリゴン初期化

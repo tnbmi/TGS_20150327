@@ -30,8 +30,8 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // ÉJÉÅÉâ
-#define CAMERA_POS			D3DXVECTOR3(0.0f, 100.0f, -150.0f)
-#define CAMERA_DEBUG_POS	D3DXVECTOR3(0.0f, 500.0f, -1000.0f)
+#define CAMERA_POS			D3DXVECTOR3(0.0f, 50.0f, -150.0f)
+#define CAMERA_DEBUG_POS	D3DXVECTOR3(0.0f, 100.0f, -700.0f)
 
 // ÉâÉCÉg
 #define LIGHT_MAX	(3)
