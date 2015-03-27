@@ -48,6 +48,8 @@ public:
 		TEX_DOME,
 		TEX_FIELD,
 		TEX_MIST,
+		TEX_TITLE,
+		TEX_RESULT,
 		TEX_MAX
 	} TEXTURES;
 

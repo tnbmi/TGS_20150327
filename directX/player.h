@@ -26,6 +26,8 @@
 class CInputKeyboard;
 class CInputPadX;
 
+class CMist;
+
 class CPlayer : public CSceneX
 {
 public:
@@ -44,6 +46,7 @@ public:
 
 private:
 	CInputKeyboard*	m_keyboard;
+
 };
 
 //=============================================================================

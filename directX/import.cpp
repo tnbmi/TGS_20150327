@@ -17,10 +17,12 @@
 const char* TEX_PATH[] =
 {
 	NULL,
-	"./data/TEXTURE/fade000.png",
+	"./data/TEXTURE/fade.jpg",
 	"./data/TEXTURE/sky000.jpg",
 	"./data/TEXTURE/concrete.jpg",
 	"./data/TEXTURE/mist.jpg",
+	"./data/TEXTURE/title.jpg",
+	"./data/TEXTURE/result.jpg",
 };
 
 // Xƒtƒ@ƒCƒ‹
