@@ -46,6 +46,7 @@ public:
 		TEX_NONE = 0,
 		TEX_FADE,
 		TEX_FIELD,
+		TEX_MIST,
 		TEX_MAX
 	} TEXTURES;
 

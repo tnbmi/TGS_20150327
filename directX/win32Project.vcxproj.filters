@@ -32,6 +32,9 @@
     <Filter Include="object\character\dust">
       <UniqueIdentifier>{32a7b25e-262c-4d84-9887-93b7d941b8b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="effect">
+      <UniqueIdentifier>{08196b66-dca1-4a8b-9534-e7a6b63b698c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
@@ -124,6 +127,9 @@
     <ClCompile Include="dustAI.cpp">
       <Filter>object\character\dust</Filter>
     </ClCompile>
+    <ClCompile Include="mist.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -215,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="dustAI.h">
       <Filter>object\character\dust</Filter>
+    </ClInclude>
+    <ClInclude Include="mist.h">
+      <Filter>effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

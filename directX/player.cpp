@@ -18,6 +18,8 @@
 #include "camera.h"
 #include "manager.h"
 
+#include "mist.h"
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ƒ}ƒNƒ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -231,6 +233,19 @@ void CPlayer::Update(void)
 			D3DXVec3Normalize(&m_vecU, &m_vecU);
 			D3DXVec3Normalize(&m_vecF, &m_vecF);
 			D3DXVec3Normalize(&m_vecR, &m_vecR);
+		}
+
+		//----------------------------
+		// •ú…
+		//----------------------------
+		if(m_keyboard->GetPress(DIK_SPACE))
+		{
+			D3DXVECTOR3 mistPos;
+			mistPos.x = m_pos.x + m_vecF.x * 23.0f;
+			mistPos.z = m_pos.z + m_vecF.z * 23.0f;
+			mistPos.y = m_pos.y + 25.0f;
+
+			CMist::Create(m_device, mistPos, m_vecF);
 		}
 
 	#ifdef _DEBUG

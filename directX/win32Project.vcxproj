@@ -95,6 +95,7 @@
     <ClCompile Include="meshDome.cpp" />
     <ClCompile Include="meshField.cpp" />
     <ClCompile Include="meshWall.cpp" />
+    <ClCompile Include="mist.cpp" />
     <ClCompile Include="phase.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="renderer.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="meshDome.h" />
     <ClInclude Include="meshField.h" />
     <ClInclude Include="meshWall.h" />
+    <ClInclude Include="mist.h" />
     <ClInclude Include="phase.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="renderer.h" />

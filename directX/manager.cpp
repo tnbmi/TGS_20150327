@@ -53,6 +53,9 @@ HRESULT CManager::Init(HINSTANCE instance, HWND wnd, bool window)
 {
 	LPDIRECT3DDEVICE9 device;
 
+	// óêêî
+	srand((unsigned int)time(NULL));
+
 	//----------------------------
 	// ã§í ïî
 	//----------------------------
