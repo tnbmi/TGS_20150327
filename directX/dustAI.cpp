@@ -37,6 +37,7 @@ CDustAI* CDustAI::Create(CDust* pDust)
 //=============================================================================
 HRESULT CDustAI::Init(CDust* pDust)
 {
+	SetDust(pDust);
 
 	return S_OK;
 }
@@ -53,4 +54,42 @@ void CDustAI::Uninit(void)
 //=============================================================================
 void CDustAI::Update(void)
 {
+	CScene* pScene = NULL;
+	D3DXVECTOR3 front = m_dust->GetFrontVector();
+	D3DXVECTOR3 right = m_dust->GetRightVector();
+	D3DXVECTOR3 vecTarget;
+	bool endFlag = false;
+
+	for(int cnt = 0; cnt < PRIORITY_MAX; ++cnt)
+	{
+		pScene = CScene::GetTop(cnt);
+
+		while(pScene != NULL)
+		{
+			if(pScene->GetType() == CScene::OBJTYPE_WALL)
+			{
+				// •Ç”»’è
+				vecTarget = pScene->GetPos() - m_dust->GetPos();
+				float length = D3DXVec3Length(&vecTarget);
+
+				// ‘O
+				if(vecTarget == front)
+				{
+					// ³–Ê‚ª•Ç‚È‚ç
+					if(length < (m_dust->GetSize().z / 2))
+					{
+						// ¶‰E‚ğ’²‚×‚Ä‚¢‚¯‚é•û‚É‹È‚ª‚é
+						endFlag = true;
+					}
+				}
+
+				// ‰E
+				if(vecTarget == right && !endFlag)
+				{
+				}
+
+				// ¶
+			}
+		}
+	}
 }

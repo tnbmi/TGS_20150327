@@ -58,6 +58,7 @@ HRESULT CDustManager::Init(LPDIRECT3DDEVICE9 device)
 	{
 		m_DustArray[cnt] = CDust::Create(device,CImport::X_ENEMY);
 		m_DustArray[cnt] -> SetPos(enemyPos[cnt]);
+		m_DustArray[cnt]->SetSize(26.0f,30.0f,25.0f);
 	}
 
 	return S_OK;

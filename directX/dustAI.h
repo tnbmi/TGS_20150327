@@ -47,6 +47,7 @@ public:
 	void Update(void);
 
 private:
+	void SetDust(CDust* dust){m_dust = dust;}
 
 	CDust* m_dust;
 };
