@@ -107,32 +107,22 @@ void CPlayer::Update(void)
 		{
 			m_speed.x -= sinf(cameraRot.y) * PLAER_SPEED;
 			m_speed.z += cosf(cameraRot.y) * PLAER_SPEED;
-
-			rotFlg = true;
 		}
 		// 手前移動
 		if(m_keyboard->GetPress(DIK_S))
 		{
 			m_speed.x += sinf(cameraRot.y) * PLAER_SPEED;
 			m_speed.z -= cosf(cameraRot.y) * PLAER_SPEED;
-
-			rotFlg = false;
 		}
 		// 左移動
 		if(m_keyboard->GetPress(DIK_A))
 		{
-			m_speed.x -= cosf(cameraRot.y) * PLAER_SPEED;
-			m_speed.z -= sinf(cameraRot.y) * PLAER_SPEED;
-
-			rotFlg = true;
+			m_rot.y -= 0.03f;
 		}
 		// 右移動
 		if(m_keyboard->GetPress(DIK_D))
 		{
-			m_speed.x += cosf(cameraRot.y) * PLAER_SPEED;
-			m_speed.z += sinf(cameraRot.y) * PLAER_SPEED;
-
-			rotFlg = true;
+			m_rot.y += 0.03f;
 		}
 
 		// 上限速度
@@ -157,7 +147,6 @@ void CPlayer::Update(void)
 		// 重力
 		m_speed.x += (0 - m_speed.x) * 0.07f;
 		m_speed.z += (0 - m_speed.z) * 0.07f;
-		//m_speed.y += -0.07f;
 
 		//----------------------------
 		// 移動
@@ -167,62 +156,6 @@ void CPlayer::Update(void)
 		//----------------------------
 		// 回転
 		//----------------------------
-		if(rotFlg)
-		{
-			float diffRot;		// 回転目的までの差分
-			float excessRot;	// 回転超過分
-
-			// 横軸が移動している
-			if(m_pos.x != m_posOld.x || m_pos.z != m_posOld.z)
-			{
-				D3DXVECTOR3 Def;			// 基準
-				D3DXVECTOR3 End;			// 目的(終点)
-				float		fVec1, fVec2;	// ベクトル絶対値
-				float		fInner;			// 内積
-	
-				// ベクトル成分
-				// 基準(z軸の奥)
-				Def.x = 0;
-				Def.z = D3DX_PI;
-				// 目的(移動前と後の差)
-				End.x = m_speed.x;
-				End.z = -m_speed.z;
-
-				// ベクトル絶対値
-				// 基準
-				fVec1 = sqrt(Def.x*Def.x + Def.z*Def.z);
-				// 目的
-				fVec2 = sqrt(End.x*End.x + End.z*End.z);
-
-				// 内積
-				fInner = (Def.x*End.x + Def.z*End.z);
-
-				// 目的の角度
-				m_rotDest.y = acos(fInner / (fVec1 * fVec2));
-
-				if(End.x >= 0.01f)	// x軸が移動している
-				{
-					m_rotDest.y *= -SIGN(End.x);
-				}
-			}
-
-			// 目的の向きまでの差分
-			diffRot =	m_rotDest.y - m_rot.y;
-			if(diffRot < -D3DX_PI || diffRot > D3DX_PI)	// 符号替え
-			{
-				excessRot	= diffRot - (SIGN_F(diffRot) * D3DX_PI);
-
-				diffRot	= (SIGN_F(diffRot) * D3DX_PI) - excessRot;
-				diffRot	= (diffRot * (-1)) + (SIGN_F(diffRot) * 0.01f);
-			}
-
-			// 向きを更新
-			m_rot.y +=	diffRot * 0.01f;
-			if(m_rot.y < -D3DX_PI || m_rot.y > D3DX_PI)	// 符号替え
-			{
-				m_rot.y = (m_rot.y * (-1)) + (SIGN_F(m_rot.y) * 0.01f);
-			}
-
 			// ベクトル変換
 			D3DXMatrixRotationAxis(&workMtx, &m_vecU, 0.0f);
 			D3DXVECTOR3 workRot = m_rot - m_rotOld;
@@ -233,7 +166,6 @@ void CPlayer::Update(void)
 			D3DXVec3Normalize(&m_vecU, &m_vecU);
 			D3DXVec3Normalize(&m_vecF, &m_vecF);
 			D3DXVec3Normalize(&m_vecR, &m_vecR);
-		}
 
 		//----------------------------
 		// 放水
@@ -241,8 +173,8 @@ void CPlayer::Update(void)
 		if(m_keyboard->GetPress(DIK_SPACE))
 		{
 			D3DXVECTOR3 mistPos;
-			mistPos.x = m_pos.x + m_vecF.x * 23.0f;
-			mistPos.z = m_pos.z + m_vecF.z * 23.0f;
+			mistPos.x = m_pos.x + m_vecF.x * 23.0f - m_vecR.x * 3.0f;
+			mistPos.z = m_pos.z + m_vecF.z * 23.0f - m_vecR.z * 3.0f;
 			mistPos.y = m_pos.y + 25.0f;
 
 			CMist::Create(m_device, mistPos, m_vecF);

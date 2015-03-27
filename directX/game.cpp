@@ -353,32 +353,11 @@ void CGame::UpdateCamera(void)
 	pos.z = sinf(rot.y - D3DX_PI * 0.5f) * cosf(rot.x) * distance;
 	pos.y = sinf(rot.x) * distance;
 
-	// プレイヤーが移動中
-	//if(abs(targetSpeed.x) >= 0.1f || abs(targetSpeed.z) >= 0.1f)
-	{
-		D3DXVECTOR2 vec[2];
+	posDest.x = -targetVecF.x * cosf(rot.x) * distance;
+	posDest.z = -targetVecF.z * cosf(rot.x) * distance;
+	m_camera->SetPosDest(posDest);
 
-		// カメラベクトル
-		vec[0].x = cosf(rot.y - D3DX_PI * 0.5f);
-		vec[0].y = sinf(rot.y - D3DX_PI * 0.5f);
-
-		// プレイヤー後ろベクトル
-		vec[1].x = -targetVecF.x;
-		vec[1].y = -targetVecF.z;
-
-		// 内積
-		float dot = D3DXVec2Dot(&vec[0], &vec[1]);
-
-		// 鋭角ならば回りこむ
-		//if(dot > 0.0f)
-		{
-			posDest.x = -targetVecF.x * cosf(rot.x) * distance;
-			posDest.z = -targetVecF.z * cosf(rot.x) * distance;
-			m_camera->SetPosDest(posDest);
-		}
-
-		pos += (posDest - pos) * 0.03f;
-	}
+	pos += (posDest - pos) * 0.05f;
 
 	m_camera->SetPos(pos);
 }
