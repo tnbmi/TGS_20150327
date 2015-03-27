@@ -24,8 +24,8 @@
 #define SIGN(n)			((n) / abs(n))	// 符号取得
 #define SIGN_F(n)		((n) / fabs(n))	// 符号取得(float)
 
-#define PLAER_SPEED		(0.05f)
-#define PLAER_SPEEDMAX	(1.0f)
+#define PLAER_SPEED		(0.07f)
+#define PLAER_SPEEDMAX	(5.0f)
 
 #define STATE_MAX	(100)
 
@@ -35,12 +35,13 @@
 CPlayer::CPlayer(int priority, OBJTYPE objType) : CSceneX(priority, objType)
 {
 	m_rot  = D3DXVECTOR3(0.0f, D3DX_PI, 0.0f);
-	m_size = D3DXVECTOR3(5.0f, 15.0f, 5.0f);
+	m_size = D3DXVECTOR3(5.0f, 20.0f, 5.0f);
+
 	m_vecF = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_vecR = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 
-	m_speed = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+	m_speed = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 }
 
 //=============================================================================
@@ -108,13 +109,13 @@ void CPlayer::Update(void)
 			rotFlg = true;
 		}
 		// 手前移動
-		if(m_keyboard->GetPress(DIK_S))
+		/*if(m_keyboard->GetPress(DIK_S))
 		{
 			m_speed.x += sinf(cameraRot.y) * PLAER_SPEED;
 			m_speed.z -= cosf(cameraRot.y) * PLAER_SPEED;
 
 			rotFlg = true;
-		}
+		}*/
 		// 左移動
 		if(m_keyboard->GetPress(DIK_A))
 		{
@@ -197,7 +198,7 @@ void CPlayer::Update(void)
 				// 目的の角度
 				m_rotDest.y = acos(fInner / (fVec1 * fVec2));
 
-				if(End.x != 0)	// x軸が移動している
+				if(End.x >= 0.01f)	// x軸が移動している
 				{
 					m_rotDest.y *= -SIGN(End.x);
 				}
@@ -237,6 +238,8 @@ void CPlayer::Update(void)
 		CDebugproc::PrintDebugProc("***プレイヤー情報******\n");
 		CDebugproc::PrintDebugProc("Pos  x:%f y:%f z:%f\n", m_pos.x, m_pos.y, m_pos.z);
 		CDebugproc::PrintDebugProc("Speed x:%f y:%f z:%f\n", m_speed.x, m_speed.y, m_speed.z);
+		CDebugproc::PrintDebugProc("VecU x:%f y:%f z:%f\n", m_vecU.x, m_vecU.y, m_vecU.z);
+		CDebugproc::PrintDebugProc("VecF x:%f y:%f z:%f\n", m_vecF.x, m_vecF.y, m_vecF.z);
 	#endif
 
 		//----------------------------
