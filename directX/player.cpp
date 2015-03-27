@@ -25,7 +25,7 @@
 #define SIGN_F(n)		((n) / fabs(n))	// •„†Žæ“¾(float)
 
 #define PLAER_SPEED		(0.07f)
-#define PLAER_SPEEDMAX	(3.0f)
+#define PLAER_SPEEDMAX	(5.0f)
 
 #define STATE_MAX	(100)
 
@@ -109,13 +109,13 @@ void CPlayer::Update(void)
 			rotFlg = true;
 		}
 		// Žè‘OˆÚ“®
-		if(m_keyboard->GetPress(DIK_S))
+		/*if(m_keyboard->GetPress(DIK_S))
 		{
 			m_speed.x += sinf(cameraRot.y) * PLAER_SPEED;
 			m_speed.z -= cosf(cameraRot.y) * PLAER_SPEED;
 
 			rotFlg = true;
-		}
+		}*/
 		// ¶ˆÚ“®
 		if(m_keyboard->GetPress(DIK_A))
 		{
@@ -239,7 +239,7 @@ void CPlayer::Update(void)
 		CDebugproc::PrintDebugProc("Pos  x:%f y:%f z:%f\n", m_pos.x, m_pos.y, m_pos.z);
 		CDebugproc::PrintDebugProc("Speed x:%f y:%f z:%f\n", m_speed.x, m_speed.y, m_speed.z);
 		CDebugproc::PrintDebugProc("VecU x:%f y:%f z:%f\n", m_vecU.x, m_vecU.y, m_vecU.z);
-		CDebugproc::PrintDebugProc("VecF x:%f y:%f z:%f\n", m_vecU.x, m_vecU.y, m_vecU.z);
+		CDebugproc::PrintDebugProc("VecF x:%f y:%f z:%f\n", m_vecF.x, m_vecF.y, m_vecF.z);
 	#endif
 
 		//----------------------------
