@@ -25,6 +25,10 @@
 class CCamera;
 class CLight;
 
+class CMeshField;
+class CPlayer;
+class CDustManager;
+
 class CGame : CPhase
 {
 public:
@@ -46,7 +50,12 @@ private:
 	static CCamera*		m_camera;
 	CLight*	m_light[3];
 
-	int		m_cameraDisNo;
+	bool	 m_dcFlg;
+	CCamera* m_debugCamera;
+
+	CMeshField*		m_field;
+	CPlayer*		m_player;
+	CDustManager*	m_dustManager;
 };
 
 //=============================================================================

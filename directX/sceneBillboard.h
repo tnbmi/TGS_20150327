@@ -24,8 +24,8 @@ public:
 	CSceneBillboard(int priority = PRIORITY_MAX - 1, OBJTYPE objType = OBJTYPE_BILLBOARD);
 	~CSceneBillboard(){};
 
-	static	CSceneBillboard* Create(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture, D3DXMATRIX view);
-	HRESULT	Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture, D3DXMATRIX view);
+	static	CSceneBillboard* Create(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture);
+	HRESULT	Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture);
 	void	Uninit(void);
 	void	Update(void);
 	void	Draw(void);
@@ -43,6 +43,10 @@ public:
 	void		SetColor(float r, float g, float b, float a){m_color = D3DXCOLOR(r, g, b, a); SetVertexPolygon();}
 	D3DXCOLOR	GetColor(void){return m_color;}
 
+	void		SetSpeed(D3DXVECTOR3 speed){m_speed = speed;}
+	void		SetSpeed(float x, float y, float z){m_speed = D3DXVECTOR3(x, y, z);}
+	D3DXVECTOR3	GetSpeed(void){return m_speed;}
+
 	void		SetTexcord(int n, D3DXVECTOR2 texcord){m_texcord[n] = texcord; SetVertexPolygon();}
 	D3DXVECTOR2	GetTexcord(int n){return m_texcord[n];}
 
@@ -59,6 +63,8 @@ protected:
 	int m_numVtx;		// 総頂点数
 	int m_numVtxIndex;	// 頂点の総インデックス数
 	int m_numPolygon;	// 総ポリゴン数
+
+	D3DXVECTOR3 m_speed;
 
 	static D3DXMATRIX m_view;		// ビュー行列
 	D3DXVECTOR2		 m_texcord[4];	// テクスチャ座標

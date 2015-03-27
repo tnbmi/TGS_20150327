@@ -26,6 +26,15 @@
     <Filter Include="phase">
       <UniqueIdentifier>{1fa324ed-f41a-417b-abb7-0b6f9d9acf19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\character">
+      <UniqueIdentifier>{dea42c2b-8d53-4d78-9668-c5bbe592cb29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\character\dust">
+      <UniqueIdentifier>{32a7b25e-262c-4d84-9887-93b7d941b8b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="effect">
+      <UniqueIdentifier>{08196b66-dca1-4a8b-9534-e7a6b63b698c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
@@ -106,6 +115,21 @@
     <ClCompile Include="game.cpp">
       <Filter>phase</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>object\character</Filter>
+    </ClCompile>
+    <ClCompile Include="dust.cpp">
+      <Filter>object\character\dust</Filter>
+    </ClCompile>
+    <ClCompile Include="dustManager.cpp">
+      <Filter>object\character\dust</Filter>
+    </ClCompile>
+    <ClCompile Include="dustAI.cpp">
+      <Filter>object\character\dust</Filter>
+    </ClCompile>
+    <ClCompile Include="mist.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -185,6 +209,21 @@
     </ClInclude>
     <ClInclude Include="game.h">
       <Filter>phase</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>object\character</Filter>
+    </ClInclude>
+    <ClInclude Include="dust.h">
+      <Filter>object\character\dust</Filter>
+    </ClInclude>
+    <ClInclude Include="dustManager.h">
+      <Filter>object\character\dust</Filter>
+    </ClInclude>
+    <ClInclude Include="dustAI.h">
+      <Filter>object\character\dust</Filter>
+    </ClInclude>
+    <ClInclude Include="mist.h">
+      <Filter>effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

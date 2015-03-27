@@ -45,12 +45,18 @@ public:
 	{
 		TEX_NONE = 0,
 		TEX_FADE,
+		TEX_DOME,
+		TEX_FIELD,
+		TEX_MIST,
 		TEX_MAX
 	} TEXTURES;
 
 	typedef enum
 	{
 		X_NONE = 0,
+		X_PLAYER,
+		X_WALL,
+		X_ENEMY,
 		X_MAX
 	} XFILES;
 

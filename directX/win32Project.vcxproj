@@ -77,6 +77,9 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="debugproc.cpp" />
+    <ClCompile Include="dust.cpp" />
+    <ClCompile Include="dustAI.cpp" />
+    <ClCompile Include="dustManager.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="import.cpp" />
@@ -92,7 +95,9 @@
     <ClCompile Include="meshDome.cpp" />
     <ClCompile Include="meshField.cpp" />
     <ClCompile Include="meshWall.cpp" />
+    <ClCompile Include="mist.cpp" />
     <ClCompile Include="phase.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="scene.cpp" />
@@ -105,6 +110,9 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="debugproc.h" />
+    <ClInclude Include="dust.h" />
+    <ClInclude Include="dustAI.h" />
+    <ClInclude Include="dustManager.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="import.h" />
@@ -120,7 +128,9 @@
     <ClInclude Include="meshDome.h" />
     <ClInclude Include="meshField.h" />
     <ClInclude Include="meshWall.h" />
+    <ClInclude Include="mist.h" />
     <ClInclude Include="phase.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="scene.h" />

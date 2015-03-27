@@ -87,9 +87,20 @@ HRESULT CMeshField::Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture, D3
 
 	// 頂点高さマップ
 	m_heightVtx = new float[m_numVtx];
-	for(int cnt = 0; cnt < m_numVtx; ++cnt)
+
+	if(heightVtx != nullptr)
 	{
-		m_heightVtx[cnt] = heightVtx[cnt];
+		for(int cnt = 0; cnt < m_numVtx; ++cnt)
+		{
+			m_heightVtx[cnt] = heightVtx[cnt];
+		}
+	}
+	else
+	{
+		for(int cnt = 0; cnt < m_numVtx; ++cnt)
+		{
+			m_heightVtx[cnt] = 0.0f;
+		}
 	}
 
 	// 法線バッファ
@@ -141,9 +152,6 @@ void CMeshField::Uninit(void)
 	SAFE_DELETE(m_vtx);
 	SAFE_DELETE(m_heightVtx);
 	SAFE_DELETE(m_norBuff);
-
-	// テクスチャの開放
-	SAFE_RELEASE(m_tex);
 
 	// 頂点バッファの開放
 	SAFE_RELEASE(m_vtxBuff);
