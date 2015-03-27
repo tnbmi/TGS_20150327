@@ -57,6 +57,10 @@ protected:
 
 	D3DXMATRIX	m_world;
 
+<<<<<<< HEAD
+=======
+	D3DXVECTOR3 m_size;
+>>>>>>> origin/dev/zyamu
 	D3DXVECTOR3 m_vecU;
 	D3DXVECTOR3 m_vecF;
 	D3DXVECTOR3 m_vecR;

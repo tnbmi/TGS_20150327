@@ -25,6 +25,11 @@ const char* TEX_PATH[] =
 const char* X_PATH[] =
 {
 	NULL,
+<<<<<<< HEAD
+=======
+	"./data/MODEL/wall.x",
+	"./data/MODEL/dust.x",
+>>>>>>> origin/dev/zyamu
 	"./data/MODEL/yogore_souzi.x",
 };
 

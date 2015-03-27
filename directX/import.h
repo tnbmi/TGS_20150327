@@ -52,6 +52,11 @@ public:
 	typedef enum
 	{
 		X_NONE = 0,
+<<<<<<< HEAD
+=======
+		X_WALL,
+		X_ENEMY,
+>>>>>>> origin/dev/zyamu
 		X_PLAYER,
 		X_MAX
 	} XFILES;

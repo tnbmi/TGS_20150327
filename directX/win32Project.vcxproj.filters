@@ -29,6 +29,9 @@
     <Filter Include="object\character">
       <UniqueIdentifier>{dea42c2b-8d53-4d78-9668-c5bbe592cb29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\character\dust">
+      <UniqueIdentifier>{32a7b25e-262c-4d84-9887-93b7d941b8b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
@@ -112,6 +115,18 @@
     <ClCompile Include="player.cpp">
       <Filter>object\character</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="dust.cpp">
+      <Filter>object\character\dust</Filter>
+    </ClCompile>
+    <ClCompile Include="dustManager.cpp">
+      <Filter>object\character\dust</Filter>
+    </ClCompile>
+    <ClCompile Include="dustAI.cpp">
+      <Filter>object\character\dust</Filter>
+    </ClCompile>
+>>>>>>> origin/dev/zyamu
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -195,5 +210,17 @@
     <ClInclude Include="player.h">
       <Filter>object\character</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="dust.h">
+      <Filter>object\character\dust</Filter>
+    </ClInclude>
+    <ClInclude Include="dustManager.h">
+      <Filter>object\character\dust</Filter>
+    </ClInclude>
+    <ClInclude Include="dustAI.h">
+      <Filter>object\character\dust</Filter>
+    </ClInclude>
+>>>>>>> origin/dev/zyamu
   </ItemGroup>
 </Project>
