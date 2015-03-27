@@ -50,6 +50,12 @@ protected:
 
 	D3DXMATRIX	m_world;
 
+	D3DXVECTOR3 m_size;
+	D3DXVECTOR3 m_vecU;
+	D3DXVECTOR3 m_vecF;
+	D3DXVECTOR3 m_vecR;
+	D3DXVECTOR3 m_speed;
+
 	CSceneX* m_parent;	// 親モデルポインタ
 };
 

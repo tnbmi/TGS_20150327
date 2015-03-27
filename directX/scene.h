@@ -43,6 +43,7 @@ public:
 		OBJTYPE_DOME,
 		OBJTYPE_CYLINDER,
 		OBJTYPE_FADE,
+		OBJTYPE_PLAYER,
 	} OBJTYPE;
 
 	typedef enum
@@ -108,6 +109,12 @@ protected:
 	D3DXVECTOR3 m_scl;
 	D3DXVECTOR3 m_size;
 	D3DXCOLOR	m_color;
+
+	D3DXVECTOR3 m_posOld;
+	D3DXVECTOR3 m_rotOld;
+
+	D3DXVECTOR3 m_posDest;
+	D3DXVECTOR3 m_rotDest;
 
 private:
 	int		m_priority;

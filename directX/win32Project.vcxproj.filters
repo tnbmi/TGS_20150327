@@ -109,6 +109,9 @@
     <ClCompile Include="game.cpp">
       <Filter>phase</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>object\character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="game.h">
       <Filter>phase</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>object\character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
