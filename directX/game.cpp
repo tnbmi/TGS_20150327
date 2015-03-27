@@ -20,13 +20,14 @@
 #include "light.h"
 
 #include "sceneBillboard.h"
+#include "meshField.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // カメラ
-#define CAMERA_POS	D3DXVECTOR3(0.0f, 10.0f, -20.0f)
+#define CAMERA_POS	D3DXVECTOR3(0.0f, 500.0f, -1000.0f)
 
 // ライト
 #define LIGHT_MAX	(3)
@@ -188,7 +189,19 @@ void CGame::Debug(void)
 //=============================================================================
 void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 {
+	//----------------------------
+	// フィールド
+	//----------------------------
+	D3DXVECTOR3 size = D3DXVECTOR3(100.0f, 0.0f, 100.0f);
+	D3DXVECTOR3 num  = D3DXVECTOR3(10.0f, 0.0f, 10.0f);
+	float*		heightVtx = nullptr;
 
+	m_field = CMeshField::Create(device,
+								 CImport::TEX_FIELD,
+								 size,
+								 num,
+								 heightVtx,
+								 CScene::MESHTEX_PATCH);
 }
 
 //=============================================================================

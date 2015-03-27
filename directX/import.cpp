@@ -18,6 +18,7 @@ const char* TEX_PATH[] =
 {
 	NULL,
 	"./data/TEXTURE/fade000.png",
+	"./data/TEXTURE/concrete.jpg",
 };
 
 // Xƒtƒ@ƒCƒ‹
