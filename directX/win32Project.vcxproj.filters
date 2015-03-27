@@ -26,6 +26,9 @@
     <Filter Include="phase">
       <UniqueIdentifier>{1fa324ed-f41a-417b-abb7-0b6f9d9acf19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\character">
+      <UniqueIdentifier>{dea42c2b-8d53-4d78-9668-c5bbe592cb29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
