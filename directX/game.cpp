@@ -22,6 +22,8 @@
 #include "sceneBillboard.h"
 #include "meshField.h"
 
+#include "player.h"
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -202,6 +204,12 @@ void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 								 num,
 								 heightVtx,
 								 CScene::MESHTEX_PATCH);
+
+	//----------------------------
+	// キャラクター
+	//----------------------------
+	CPlayer* player = CPlayer::Create(device);
+	player->SetKeyboard(m_keyboard);
 }
 
 //=============================================================================

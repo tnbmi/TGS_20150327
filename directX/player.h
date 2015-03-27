@@ -1,74 +1,54 @@
 //*****************************************************************************
 //
-// CImportクラス [import.h]
+// CPlayerクラス [player.cpp]
 // Author :MAI TANABE
 //
 //*****************************************************************************
 
-#ifndef _MY_IMPORT_H
-#define _MY_IMPORT_H
+#ifndef _MY_PLAYER_H
+#define _MY_PLAYER_H
 //=============================================================================
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // インクルードファイル
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "main.h"
+#include "sceneX.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// 構造体定義
+// マクロ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-typedef struct XFILE
-{
-	XFILE()
-	{
-		buffMat	= nullptr;
-		numMat	= 0;
-		mesh	= nullptr;
-		mat		= nullptr;
-		tex		= nullptr;
-	}
-
-	LPD3DXBUFFER		buffMat;	// マテリアル情報へのポインタ
-	DWORD				numMat;		// マテリアル情報の数
-	LPD3DXMESH			mesh;		// メッシュ情報へのポインタ
-	D3DXMATERIAL*		mat;		// マテリアルデータ先頭ポインタ
-	LPDIRECT3DTEXTURE9*	tex;		// テクスチャデータ先頭ポインタ
-} XFILE;
+#define PLAER_STOP	(0.1f)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // クラス定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class CImport
+class CInputKeyboard;
+class CInputPadX;
+
+class CPlayer : public CSceneX
 {
 public:
-	typedef enum
-	{
-		TEX_NONE = 0,
-		TEX_FADE,
-		TEX_FIELD,
-		TEX_MAX
-	} TEXTURES;
+	CPlayer(int priority = PRIORITY_MAX - 2, OBJTYPE objType = OBJTYPE_PLAYER);
+	~CPlayer(){};
 
-	typedef enum
-	{
-		X_NONE = 0,
-		X_PLAYER,
-		X_MAX
-	} XFILES;
-
-	CImport();
-	~CImport(){};
-
-	static	CImport* Create(LPDIRECT3DDEVICE9 device);
+	static CPlayer* Create(LPDIRECT3DDEVICE9 device);
 	HRESULT	Init(LPDIRECT3DDEVICE9 device);
 	void	Uninit(void);
+	void	Update(void);
+	void	Draw(void);
 
-	static LPDIRECT3DTEXTURE9 GetTexture(TEXTURES tex){return m_tex[tex];}
-	static XFILE			  GetXFile(XFILES x){return m_xFile[x];}
+	void SetRot(D3DXVECTOR3 rot);
+
+	D3DXVECTOR3 GetSize(void){return m_size;}
+	D3DXVECTOR3 GetVecU(void){return m_vecU;}
+	D3DXVECTOR3 GetVecF(void){return m_vecF;}
+	D3DXVECTOR3 GetVecR(void){return m_vecR;}
+
+	void SetKeyboard(CInputKeyboard* keyboard){m_keyboard = keyboard;}
 
 private:
-	static LPDIRECT3DTEXTURE9 m_tex[TEX_MAX];
-	static XFILE			  m_xFile[X_MAX];
+	CInputKeyboard*	m_keyboard;
 };
 
 //=============================================================================

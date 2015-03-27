@@ -108,9 +108,6 @@ HRESULT CMeshCylinder::Init(LPDIRECT3DDEVICE9 device, CImport::TEXTURES texture,
 //=============================================================================
 void CMeshCylinder::Uninit(void)
 {
-	// テクスチャの開放
-	SAFE_RELEASE(m_tex);
-
 	// 頂点バッファの開放
 	SAFE_RELEASE(m_vtxBuff);
 

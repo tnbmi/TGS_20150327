@@ -153,9 +153,6 @@ void CMeshField::Uninit(void)
 	SAFE_DELETE(m_heightVtx);
 	SAFE_DELETE(m_norBuff);
 
-	// テクスチャの開放
-	SAFE_RELEASE(m_tex);
-
 	// 頂点バッファの開放
 	SAFE_RELEASE(m_vtxBuff);
 
