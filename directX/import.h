@@ -45,6 +45,7 @@ public:
 	{
 		TEX_NONE = 0,
 		TEX_FADE,
+		TEX_FIELD,
 		TEX_MAX
 	} TEXTURES;
 
@@ -53,6 +54,7 @@ public:
 		X_NONE = 0,
 		X_WALL,
 		X_ENEMY,
+		X_PLAYER,
 		X_MAX
 	} XFILES;
 

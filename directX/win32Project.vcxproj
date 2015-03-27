@@ -95,6 +95,7 @@
     <ClCompile Include="meshField.cpp" />
     <ClCompile Include="meshWall.cpp" />
     <ClCompile Include="phase.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="scene.cpp" />
@@ -125,6 +126,7 @@
     <ClInclude Include="meshField.h" />
     <ClInclude Include="meshWall.h" />
     <ClInclude Include="phase.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="scene.h" />

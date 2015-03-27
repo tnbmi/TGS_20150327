@@ -109,10 +109,7 @@
     <ClCompile Include="game.cpp">
       <Filter>phase</Filter>
     </ClCompile>
-    <ClCompile Include="dust.cpp">
-      <Filter>object\character</Filter>
-    </ClCompile>
-    <ClCompile Include="dustManager.cpp">
+    <ClCompile Include="player.cpp">
       <Filter>object\character</Filter>
     </ClCompile>
   </ItemGroup>
@@ -195,10 +192,7 @@
     <ClInclude Include="game.h">
       <Filter>phase</Filter>
     </ClInclude>
-    <ClInclude Include="dust.h">
-      <Filter>object\character</Filter>
-    </ClInclude>
-    <ClInclude Include="dustManager.h">
+    <ClInclude Include="player.h">
       <Filter>object\character</Filter>
     </ClInclude>
   </ItemGroup>

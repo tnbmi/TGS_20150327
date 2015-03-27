@@ -18,6 +18,7 @@ const char* TEX_PATH[] =
 {
 	NULL,
 	"./data/TEXTURE/fade000.png",
+	"./data/TEXTURE/concrete.jpg",
 };
 
 // Xファイル
@@ -25,7 +26,8 @@ const char* X_PATH[] =
 {
 	NULL,
 	"./data/MODEL/wall.x",
-	"./data/MODEL/enemy.x",
+	"./data/MODEL/dust.x",
+	"./data/MODEL/yogore_souzi.x",
 };
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -70,7 +72,7 @@ HRESULT CImport::Init(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// テクスチャ
 	//----------------------------
-	for(int cnt = 0; cnt < TEX_MAX; ++cnt)
+	for(int cnt = 1; cnt < TEX_MAX; ++cnt)
 	{
 		D3DXCreateTextureFromFile(device, TEX_PATH[cnt], &m_tex[cnt]);
 	}
@@ -78,7 +80,7 @@ HRESULT CImport::Init(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// Xファイル
 	//----------------------------
-	for(int cnt = 0; cnt < X_MAX; ++cnt)
+	for(int cnt = 1; cnt < X_MAX; ++cnt)
 	{
 		// モデル読み込み
 		if(FAILED(D3DXLoadMeshFromX(X_PATH[cnt],
@@ -122,24 +124,26 @@ HRESULT CImport::Init(LPDIRECT3DDEVICE9 device)
 void CImport::Uninit(void)
 {
 	//----------------------------
-	// テクスチャ
-	//----------------------------
-	for(int cnt = 0; cnt < TEX_MAX; cnt++)
-	{
-		SAFE_RELEASE(m_tex[cnt]);
-	}
-
-	//----------------------------
 	// Xファイル
 	//----------------------------
-	for(int cnt = 0; cnt < X_MAX; cnt++)
+	for(int cnt = 1; cnt < X_MAX; cnt++)
 	{
+		// テクスチャポインタ解放
+		SAFE_DELETE(m_xFile[cnt].tex);
+
 		// メッシュ情報の開放
 		SAFE_RELEASE(m_xFile[cnt].mesh);
 
 		// マテリアル情報の開放
 		SAFE_RELEASE(m_xFile[cnt].buffMat);
+	}
 
-		SAFE_DELETE(m_xFile[cnt].tex);
+	//----------------------------
+	// テクスチャ
+	//----------------------------
+	for(int cnt = 1; cnt < TEX_MAX; cnt++)
+	{
+		// テクスチャの開放
+		SAFE_RELEASE(m_tex[cnt]);
 	}
 }
