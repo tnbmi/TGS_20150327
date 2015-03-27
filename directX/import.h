@@ -45,6 +45,7 @@ public:
 	{
 		TEX_NONE = 0,
 		TEX_FADE,
+		TEX_DOME,
 		TEX_FIELD,
 		TEX_MIST,
 		TEX_MAX

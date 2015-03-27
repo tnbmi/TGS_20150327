@@ -13,9 +13,9 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#define LIFE_TIME	(60)
+#define LIFE_TIME	(16)
 #define GRAVITY		(0.1f)
-#define POLIGON_SIZE (3.0f)
+#define POLIGON_SIZE (5.0f)
 
 //=============================================================================
 // コンストラクタ
@@ -23,7 +23,7 @@
 CMist::CMist(int priority, OBJTYPE objType) : CSceneBillboard(priority, objType)
 {
 	m_size = D3DXVECTOR3(POLIGON_SIZE, POLIGON_SIZE, 0.0f);
-	m_speed = D3DXVECTOR3(5.0f, 0.0f, 5.0f);
+	m_speed = D3DXVECTOR3(7.0f, 1.0f, 7.0f);
 
 	m_pos.x = (float)(rand() % 6) - 3 * 0.1f;
 	m_pos.y = (float)(rand() % 6) - 3 * 0.1f;
@@ -86,7 +86,7 @@ void CMist::Update(void)
 	m_pos.z	+= m_vec.z * m_speed.z;
 	m_pos.y += m_speed.y;
 	
-	m_speed.y += -0.1f;
+	m_speed.y += -0.2f;
 
 	//----------------------------
 	// カウントダウン
