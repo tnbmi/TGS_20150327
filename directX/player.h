@@ -40,14 +40,6 @@ public:
 
 	void SetRot(D3DXVECTOR3 rot);
 
-<<<<<<< HEAD
-=======
-	D3DXVECTOR3 GetSize(void){return m_size;}
-	D3DXVECTOR3 GetVecU(void){return m_vecU;}
-	D3DXVECTOR3 GetVecF(void){return m_vecF;}
-	D3DXVECTOR3 GetVecR(void){return m_vecR;}
-
->>>>>>> origin/dev/zyamu
 	void SetKeyboard(CInputKeyboard* keyboard){m_keyboard = keyboard;}
 
 private:

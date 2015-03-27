@@ -34,13 +34,8 @@
 //=============================================================================
 CPlayer::CPlayer(int priority, OBJTYPE objType) : CSceneX(priority, objType)
 {
-<<<<<<< HEAD
 	m_rot  = D3DXVECTOR3(0.0f, D3DX_PI, 0.0f);
 	m_size = D3DXVECTOR3(5.0f, 15.0f, 5.0f);
-
-=======
-	m_size = D3DXVECTOR3(5.0f, 15.0f, 5.0f);
->>>>>>> origin/dev/zyamu
 	m_vecF = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_vecR = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
@@ -242,10 +237,6 @@ void CPlayer::Update(void)
 		CDebugproc::PrintDebugProc("***ÉvÉåÉCÉÑÅ[èÓïÒ******\n");
 		CDebugproc::PrintDebugProc("Pos  x:%f y:%f z:%f\n", m_pos.x, m_pos.y, m_pos.z);
 		CDebugproc::PrintDebugProc("Speed x:%f y:%f z:%f\n", m_speed.x, m_speed.y, m_speed.z);
-<<<<<<< HEAD
-		CDebugproc::PrintDebugProc("Vec U:%f F:%f R:%f\n", m_vecU, m_vecF, m_vecR);
-=======
->>>>>>> origin/dev/zyamu
 	#endif
 
 		//----------------------------

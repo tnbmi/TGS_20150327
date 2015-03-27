@@ -44,10 +44,7 @@ public:
 		OBJTYPE_CYLINDER,
 		OBJTYPE_FADE,
 		OBJTYPE_PLAYER,
-<<<<<<< HEAD
-=======
 		OBJTYPE_ENEMY,
->>>>>>> origin/dev/zyamu
 	} OBJTYPE;
 
 	typedef enum

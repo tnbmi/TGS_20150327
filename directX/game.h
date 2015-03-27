@@ -26,11 +26,8 @@ class CCamera;
 class CLight;
 
 class CMeshField;
-<<<<<<< HEAD
 class CPlayer;
-=======
 class CDustManager;
->>>>>>> origin/dev/zyamu
 
 class CGame : CPhase
 {
@@ -56,12 +53,9 @@ private:
 	bool	 m_dcFlg;
 	CCamera* m_debugCamera;
 
-	CMeshField*	m_field;
-<<<<<<< HEAD
-	CPlayer*	m_player;
-=======
-	CDustManager* m_dustManager;
->>>>>>> origin/dev/zyamu
+	CMeshField*		m_field;
+	CPlayer*		m_player;
+	CDustManager*	m_dustManager;
 };
 
 //=============================================================================
