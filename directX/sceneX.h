@@ -43,6 +43,13 @@ public:
 	void		SetColor(float r, float g, float b, float a){m_color = D3DXCOLOR(r, g, b, a);}
 	D3DXCOLOR	GetColor(void){return m_color;}
 
+	D3DXVECTOR3 GetVecU(void){return m_vecU;}
+	D3DXVECTOR3 GetVecF(void){return m_vecF;}
+	D3DXVECTOR3 GetVecR(void){return m_vecR;}
+	void		SetSpeed(D3DXVECTOR3 speed){m_speed = speed;}
+	void		SetSpeed(float x, float y, float z){m_speed = D3DXVECTOR3(x, y, z);}
+	D3DXVECTOR3	GetSpeed(void){return m_speed;}
+
 	void SetParent(CSceneX* parent){m_parent = parent;}
 
 protected:
@@ -50,7 +57,6 @@ protected:
 
 	D3DXMATRIX	m_world;
 
-	D3DXVECTOR3 m_size;
 	D3DXVECTOR3 m_vecU;
 	D3DXVECTOR3 m_vecF;
 	D3DXVECTOR3 m_vecR;
