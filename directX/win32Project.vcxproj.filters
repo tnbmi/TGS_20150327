@@ -115,6 +115,8 @@
     <ClCompile Include="player.cpp">
       <Filter>object\character</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
     <ClCompile Include="dust.cpp">
       <Filter>object\character\dust</Filter>
     </ClCompile>
@@ -124,6 +126,7 @@
     <ClCompile Include="dustAI.cpp">
       <Filter>object\character\dust</Filter>
     </ClCompile>
+>>>>>>> origin/dev/zyamu
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -207,6 +210,8 @@
     <ClInclude Include="player.h">
       <Filter>object\character</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
     <ClInclude Include="dust.h">
       <Filter>object\character\dust</Filter>
     </ClInclude>
@@ -216,5 +221,6 @@
     <ClInclude Include="dustAI.h">
       <Filter>object\character\dust</Filter>
     </ClInclude>
+>>>>>>> origin/dev/zyamu
   </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#define THINK_COOL_TIME (60)	// 思考間隔
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 列挙体定義
@@ -25,6 +26,17 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 構造体定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+typedef enum
+{
+	TACTICS_STATE_NONE = 0,
+	TACTICS_STATE_ATTACK_POSSIBLE,
+	TACTICS_STATE_ATTACK,
+	TACTICS_STATE_ATTACK_END,
+	TACTICS_STATE_MOVE_START,
+	TACTICS_STATE_MOVE,
+	TACTICS_STATE_STAY,
+	TACTICS_STATE_MAX
+}TACTICS_STATE;
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 前方宣言
@@ -48,7 +60,19 @@ public:
 
 private:
 	void SetDust(CDust* dust){m_dust = dust;}
+	// 目的地を決める
+	void ThinkPosDest(void);
+	// 視界内サーチ
+	bool SerchVision(void);
+	// 攻撃準備時の処理
+	void AttackPossible(void);
+	// 攻撃処理
+	void Attack(void);
+	// 攻撃後の処理
+	void AttackEnd(void);
 
+	TACTICS_STATE TacticsState;
+	int m_nThinkCount;
 	CDust* m_dust;
 };
 
