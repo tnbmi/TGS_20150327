@@ -121,22 +121,25 @@ HRESULT CImport::Init(LPDIRECT3DDEVICE9 device)
 void CImport::Uninit(void)
 {
 	//----------------------------
-	// テクスチャ
-	//----------------------------
-	for(int cnt = 0; cnt < TEX_MAX; cnt++)
-	{
-		SAFE_RELEASE(m_tex[cnt]);
-	}
-
-	//----------------------------
 	// Xファイル
 	//----------------------------
 	for(int cnt = 0; cnt < X_MAX; cnt++)
 	{
+		// テクスチャポインタ解放
+		SAFE_DELETE(m_xFile[cnt].tex);
+
 		// メッシュ情報の開放
 		SAFE_RELEASE(m_xFile[cnt].mesh);
 
 		// マテリアル情報の開放
 		SAFE_RELEASE(m_xFile[cnt].buffMat);
+	}
+
+	//----------------------------
+	// テクスチャ
+	//----------------------------
+	for(int cnt = 0; cnt < TEX_MAX; cnt++)
+	{
+		SAFE_RELEASE(m_tex[cnt]);
 	}
 }
