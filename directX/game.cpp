@@ -20,6 +20,7 @@
 #include "light.h"
 
 #include "sceneBillboard.h"
+#include "meshDome.h"
 #include "meshField.h"
 
 #include "player.h"
@@ -47,6 +48,10 @@ const D3DCOLORVALUE LIGHT_DIFFUSE[LIGHT_MAX] =
 	D3DXCOLOR(0.7f, 0.7f, 0.7f, 1.0f),
 	D3DXCOLOR(0.3f, 0.3f, 0.3f, 1.0f)
 };
+
+// ドーム
+#define DOME_BLOCK_SIZE	D3DXVECTOR3(10.0f, 10.0f, 0.0f)
+#define DOME_BLOCK_NUM	D3DXVECTOR3(18.0f, 16.0f, 0.0f)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 静的変数
@@ -227,8 +232,13 @@ void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// フィールド
 	//----------------------------
-	D3DXVECTOR3 size = D3DXVECTOR3(100.0f, 0.0f, 100.0f);
-	D3DXVECTOR3 num  = D3DXVECTOR3(10.0f, 0.0f, 10.0f);
+	// 空
+	CMeshDome* sky = CMeshDome::Create(device, CImport::TEX_DOME, DOME_BLOCK_SIZE, DOME_BLOCK_NUM);
+	sky->SetSize(4000.0f, 4000.0f, 4000.0f);
+
+	// 地面
+	D3DXVECTOR3 size = D3DXVECTOR3(50.0f, 0.0f, 50.0f);
+	D3DXVECTOR3 num  = D3DXVECTOR3(100.0f, 0.0f, 100.0f);
 	float*		heightVtx = nullptr;
 
 	m_field = CMeshField::Create(device,
