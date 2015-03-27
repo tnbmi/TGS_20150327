@@ -26,6 +26,7 @@ class CCamera;
 class CLight;
 
 class CMeshField;
+class CPlayer;
 
 class CGame : CPhase
 {
@@ -49,6 +50,7 @@ private:
 	CLight*	m_light[3];
 
 	CMeshField*	m_field;
+	CPlayer*	m_player;
 };
 
 //=============================================================================

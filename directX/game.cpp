@@ -208,8 +208,8 @@ void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// キャラクター
 	//----------------------------
-	CPlayer* player = CPlayer::Create(device);
-	player->SetKeyboard(m_keyboard);
+	m_player = CPlayer::Create(device);
+	m_player->SetKeyboard(m_keyboard);
 }
 
 //=============================================================================
