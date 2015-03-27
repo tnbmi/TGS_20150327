@@ -49,6 +49,9 @@ private:
 	static CCamera*		m_camera;
 	CLight*	m_light[3];
 
+	bool	 m_dcFlg;
+	CCamera* m_debugCamera;
+
 	CMeshField*	m_field;
 	CPlayer*	m_player;
 };

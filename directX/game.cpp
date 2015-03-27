@@ -29,7 +29,8 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // カメラ
-#define CAMERA_POS	D3DXVECTOR3(0.0f, 500.0f, -1000.0f)
+#define CAMERA_POS			D3DXVECTOR3(0.0f, 50.0f, -150.0f)
+#define CAMERA_DEBUG_POS	D3DXVECTOR3(0.0f, 500.0f, -1000.0f)
 
 // ライト
 #define LIGHT_MAX	(3)
@@ -64,8 +65,10 @@ HRESULT CGame::Init(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// カメラ
 	//----------------------------
-	m_camera = new CCamera();
-	HRESULT_FUNC(m_camera->Init(D3DXVECTOR3(0.0f, 0.0f, 0.0f), CAMERA_POS));
+	m_camera = CCamera::Create(D3DXVECTOR3(0.0f, 15.0f, 0.0f), CAMERA_POS);
+
+	m_dcFlg = false;
+	m_debugCamera = CCamera::Create(D3DXVECTOR3(0.0f, 15.0f, 0.0f), CAMERA_DEBUG_POS);
 
 	//----------------------------
 	// ライト
@@ -118,6 +121,7 @@ void CGame::Uninit(void)
 	//----------------------------
 	// カメラ
 	SAFE_END(m_camera);
+	SAFE_END(m_debugCamera);
 
 	// ライト
 	for(int cnt = 0; cnt < LIGHT_MAX; ++cnt)
@@ -168,8 +172,16 @@ void CGame::Update(void)
 void CGame::Draw(void)
 {
 	// カメラ設定
-	m_camera->SetCamera(m_device);
-	CSceneBillboard::SetMtxView(m_camera->GetMtxView());
+	if(m_dcFlg)
+	{
+		m_debugCamera->SetCamera(m_device);
+		CSceneBillboard::SetMtxView(m_debugCamera->GetMtxView());
+	}
+	else
+	{
+		m_camera->SetCamera(m_device);
+		CSceneBillboard::SetMtxView(m_camera->GetMtxView());
+	}
 }
 
 //=============================================================================
@@ -183,6 +195,21 @@ void CGame::Debug(void)
 	if(m_keyboard->GetTrigger(DIK_RETURN))
 	{
 		m_fade->Start(CFade::FADESTATE_OUT, 1, 1.0f, 1.0f, 1.0f, 0.0f);
+	}
+
+	//----------------------------
+	// カメラ切り替え
+	//----------------------------
+	if(m_keyboard->GetTrigger(DIK_F2))
+	{
+		if(m_dcFlg)
+		{
+			m_dcFlg = false;
+		}
+		else
+		{
+			m_dcFlg = true;
+		}
 	}
 }
 
@@ -217,10 +244,10 @@ void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 //=============================================================================
 void CGame::UpdateCamera(void)
 {
-	D3DXVECTOR3 targetPos	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	D3DXVECTOR3 targetVecF	= D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-	D3DXVECTOR3 targetSpeed	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	D3DXVECTOR3 targetSize	= D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	D3DXVECTOR3 targetPos	= m_player->GetPos();
+	D3DXVECTOR3 targetVecF	= m_player->GetVecF();
+	D3DXVECTOR3 targetSpeed	= m_player->GetSpeed();
+	D3DXVECTOR3 targetSize	= m_player->GetSize();
 
 	D3DXVECTOR3 at			= m_camera->GetAt();
 	D3DXVECTOR3 pos			= m_camera->GetPos();
@@ -305,7 +332,7 @@ void CGame::UpdateCamera(void)
 	pos.y = sinf(rot.x) * distance;
 
 	// プレイヤーが移動中
-	if(abs(targetSpeed.x) >= 1.0f || abs(targetSpeed.z) >= 1.0f)
+	if(abs(targetSpeed.x) >= 0.1f || abs(targetSpeed.z) >= 0.1f)
 	{
 		D3DXVECTOR2 vec[2];
 
