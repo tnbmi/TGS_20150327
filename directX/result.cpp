@@ -125,5 +125,7 @@ void CResult::Draw(void)
 //=============================================================================
 void CResult::InitObject(LPDIRECT3DDEVICE9 device)
 {
-
+	CScene2D* scene = CScene2D::Create(device, CImport::TEX_RESULT, CScene2D::POINT_CENTER);
+	scene->SetSize(D3DXVECTOR3(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f));
+	scene->SetPos(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f));
 }
