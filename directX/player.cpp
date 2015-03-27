@@ -24,7 +24,7 @@
 #define SIGN(n)			((n) / abs(n))	// 符号取得
 #define SIGN_F(n)		((n) / fabs(n))	// 符号取得(float)
 
-#define PLAER_SPEED		(0.07f)
+#define PLAER_SPEED		(0.1f)
 #define PLAER_SPEEDMAX	(5.0f)
 
 #define STATE_MAX	(100)
@@ -109,13 +109,13 @@ void CPlayer::Update(void)
 			rotFlg = true;
 		}
 		// 手前移動
-		/*if(m_keyboard->GetPress(DIK_S))
+		if(m_keyboard->GetPress(DIK_S))
 		{
 			m_speed.x += sinf(cameraRot.y) * PLAER_SPEED;
 			m_speed.z -= cosf(cameraRot.y) * PLAER_SPEED;
 
-			rotFlg = true;
-		}*/
+			rotFlg = false;
+		}
 		// 左移動
 		if(m_keyboard->GetPress(DIK_A))
 		{
@@ -215,10 +215,10 @@ void CPlayer::Update(void)
 			}
 
 			// 向きを更新
-			m_rot.y +=	diffRot * 0.1f;
+			m_rot.y +=	diffRot * 0.01f;
 			if(m_rot.y < -D3DX_PI || m_rot.y > D3DX_PI)	// 符号替え
 			{
-				m_rot.y = (m_rot.y * (-1)) + (SIGN_F(m_rot.y) * 0.1f);
+				m_rot.y = (m_rot.y * (-1)) + (SIGN_F(m_rot.y) * 0.01f);
 			}
 
 			// ベクトル変換
