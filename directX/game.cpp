@@ -23,6 +23,7 @@
 #include "meshField.h"
 
 #include "player.h"
+#include "dustManager.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ
@@ -110,6 +111,11 @@ HRESULT CGame::Init(LPDIRECT3DDEVICE9 device)
 //=============================================================================
 void CGame::Uninit(void)
 {
+	//----------------------------
+	// 敵情報
+	//----------------------------
+	SAFE_DELETE(m_dustManager);
+
 	//----------------------------
 	// オブジェクト
 	//----------------------------
@@ -237,6 +243,12 @@ void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	m_player = CPlayer::Create(device);
 	m_player->SetKeyboard(m_keyboard);
+
+	// 壁
+	CSceneX::Create(device,CImport::X_WALL);
+
+	// 敵
+	m_dustManager = CDustManager::Create(device);
 }
 
 //=============================================================================

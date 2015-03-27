@@ -53,6 +53,8 @@ public:
 	{
 		X_NONE = 0,
 		X_PLAYER,
+		X_WALL,
+		X_ENEMY,
 		X_MAX
 	} XFILES;
 

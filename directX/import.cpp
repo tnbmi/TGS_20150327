@@ -26,6 +26,8 @@ const char* X_PATH[] =
 {
 	NULL,
 	"./data/MODEL/yogore_souzi.x",
+	"./data/MODEL/wall.x",
+	"./data/MODEL/dust.x",
 };
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -27,6 +27,7 @@ class CLight;
 
 class CMeshField;
 class CPlayer;
+class CDustManager;
 
 class CGame : CPhase
 {
@@ -52,8 +53,9 @@ private:
 	bool	 m_dcFlg;
 	CCamera* m_debugCamera;
 
-	CMeshField*	m_field;
-	CPlayer*	m_player;
+	CMeshField*		m_field;
+	CPlayer*		m_player;
+	CDustManager*	m_dustManager;
 };
 
 //=============================================================================

@@ -44,6 +44,7 @@ public:
 		OBJTYPE_CYLINDER,
 		OBJTYPE_FADE,
 		OBJTYPE_PLAYER,
+		OBJTYPE_ENEMY,
 	} OBJTYPE;
 
 	typedef enum
