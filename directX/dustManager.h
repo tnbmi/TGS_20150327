@@ -42,6 +42,8 @@ public:
 	HRESULT	Init(LPDIRECT3DDEVICE9 device);
 	void	Uninit(void);
 	void	Update(void);
+	CDust*	GetDust(int index);
+	void	Damage(int index);
 
 private:
 

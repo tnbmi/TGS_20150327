@@ -47,6 +47,7 @@ public:
 		TEX_FADE,
 		TEX_DOME,
 		TEX_FIELD,
+		TEX_WALL,
 		TEX_MIST,
 		TEX_TITLE,
 		TEX_RESULT,
@@ -59,6 +60,9 @@ public:
 		X_PLAYER,
 		X_WALL,
 		X_ENEMY,
+		X_BILL,
+		X_THREE_BILL,
+		X_L_BILL,
 		X_MAX
 	} XFILES;
 
@@ -72,9 +76,17 @@ public:
 	static LPDIRECT3DTEXTURE9 GetTexture(TEXTURES tex){return m_tex[tex];}
 	static XFILE			  GetXFile(XFILES x){return m_xFile[x];}
 
+	static D3DXVECTOR3 GetVtxSizeMin(XFILES index){return m_VtxMin[index];}
+	static D3DXVECTOR3 GetVtxSizeMax(XFILES index){return m_VtxMax[index];}
+	static D3DXVECTOR3 GetVtxMin(int index);
+	static D3DXVECTOR3 GetVtxMax(int index);
+
 private:
 	static LPDIRECT3DTEXTURE9 m_tex[TEX_MAX];
 	static XFILE			  m_xFile[X_MAX];
+
+	static D3DXVECTOR3        m_VtxMin[X_MAX];
+	static D3DXVECTOR3        m_VtxMax[X_MAX];
 };
 
 //=============================================================================

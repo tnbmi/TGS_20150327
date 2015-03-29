@@ -35,6 +35,9 @@
     <Filter Include="effect">
       <UniqueIdentifier>{08196b66-dca1-4a8b-9534-e7a6b63b698c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\character\bill">
+      <UniqueIdentifier>{1cc52710-4741-4b6f-b3f8-af735d4f33c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
@@ -130,6 +133,12 @@
     <ClCompile Include="mist.cpp">
       <Filter>effect</Filter>
     </ClCompile>
+    <ClCompile Include="bill.cpp">
+      <Filter>object\character\bill</Filter>
+    </ClCompile>
+    <ClCompile Include="billManager.cpp">
+      <Filter>object\character\bill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugproc.h">
@@ -224,6 +233,12 @@
     </ClInclude>
     <ClInclude Include="mist.h">
       <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="bill.h">
+      <Filter>object\character\bill</Filter>
+    </ClInclude>
+    <ClInclude Include="billManager.h">
+      <Filter>object\character\bill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,55 +1,56 @@
 //*****************************************************************************
 //
-// CPlayerクラス [player.cpp]
-// Author :MAI TANABE
+// CBillManagerクラス [import.h]
+// Author :KOUTAROU NISHIDA
 //
 //*****************************************************************************
 
-#ifndef _MY_PLAYER_H
-#define _MY_PLAYER_H
+#ifndef _BILL_MANAGER_H
+#define _BILL_MANAGER_H
 //=============================================================================
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // インクルードファイル
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "main.h"
-#include "sceneX.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// マクロ
+// 構造体定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#define PLAER_STOP	(0.1f)
 
+#define BILL_MAX (4)
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // クラス定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class CInputKeyboard;
-class CInputPadX;
-
-class CMist;
-
-class CPlayer : public CSceneX
+class CBill;
+class CBillManager
 {
 public:
-	CPlayer(int priority = PRIORITY_MAX - 2, OBJTYPE objType = OBJTYPE_PLAYER);
-	~CPlayer(){};
+	CBillManager();
+	~CBillManager();
+	HRESULT Init(LPDIRECT3DDEVICE9 device);
+	void Uninit(void);
+	void Update(void);
+	void Draw(void);
 
-	static CPlayer* Create(LPDIRECT3DDEVICE9 device);
-	HRESULT	Init(LPDIRECT3DDEVICE9 device);
-	void	Uninit(void);
-	void	Update(void);
-	void	Draw(void);
+	static CBillManager *Create(LPDIRECT3DDEVICE9 device);
 
-	void SetRot(D3DXVECTOR3 rot);
+	static D3DXVECTOR3 GetPos(int nindex){ return m_Pos[nindex]; }
+	static D3DXVECTOR3 SetPos(int nindex){ return m_Pos[nindex]; }
+	static D3DXVECTOR3 GetRot(int nindex){ return m_Rot[nindex]; }
+	static D3DXVECTOR3 SetRot(int nindex){ return m_Rot[nindex]; }
 
-	void SetKeyboard(CInputKeyboard* keyboard){m_keyboard = keyboard;}
+	CBill *GetBill(int index){ return m_pBill[index]; }
 
-	bool HitMist(D3DXVECTOR3 pos);
+	int GetNumBill(void){return m_nNumBill;}
 
 private:
-	CInputKeyboard*	m_keyboard;
+	static const D3DXVECTOR3 m_Pos[];
+	static const D3DXVECTOR3 m_Rot[];
+	int		m_nNumBill;
 
-	bool m_mist;
+	CBill *m_pBill[BILL_MAX];
+
 };
 
 //=============================================================================

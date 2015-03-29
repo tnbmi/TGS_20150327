@@ -16,6 +16,14 @@
 #include "sceneX.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// マクロ定義
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#define DUST_MOVE_SPEED (0.4f)
+#define DUST_ROTATION_SPEED (0.4f)
+#define DUST_HP (3)
+#define DUST_INVINCIBLE_TIME (30)
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 構造体定義
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -45,12 +53,21 @@ public:
 	D3DXVECTOR3 GetRightVector(void){return m_RightVector;}
 	void SetRightVector(D3DXVECTOR3 right){m_RightVector = right;}
 
+	void SetMove(bool bMove){m_move = bMove;}
+	void SetDamege(void);
+	int GetHP(void){return m_HP;}
+
 private:
 
 	D3DXVECTOR3 m_FrontVector;
 	D3DXVECTOR3 m_RightVector;
+	D3DXVECTOR3 m_RotPower;
 
-	CDustAI* m_AI;
+	CDustAI*	m_AI;
+	bool		m_move;
+	int			m_HP;
+	int			m_InvincibleTime;
+	bool		m_damege;
 };
 
 //=============================================================================

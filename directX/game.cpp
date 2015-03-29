@@ -25,6 +25,8 @@
 
 #include "player.h"
 #include "dustManager.h"
+#include "billManager.h"
+#include "dust.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // マクロ
@@ -56,7 +58,10 @@ const D3DCOLORVALUE LIGHT_DIFFUSE[LIGHT_MAX] =
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 静的変数
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-CCamera*	CGame::m_camera	= NULL;
+CCamera*		CGame::m_camera	= NULL;
+CPlayer*		CGame::m_player	= NULL;
+CDustManager*	CGame::m_dustManager = NULL;
+CBillManager*	CGame::m_billManager = NULL;
 
 //=============================================================================
 // 初期化
@@ -121,6 +126,8 @@ void CGame::Uninit(void)
 	//----------------------------
 	SAFE_DELETE(m_dustManager);
 
+	SAFE_DELETE(m_billManager);
+
 	//----------------------------
 	// オブジェクト
 	//----------------------------
@@ -166,6 +173,24 @@ void CGame::Update(void)
 		//----------------------------
 		// カメラ
 		UpdateCamera();
+
+		m_billManager->Update();
+
+		// 敵との当たり判定
+		/*CDust* dust = NULL;
+		for(int cnt = 0;cnt < ENEMY_MAX; ++cnt)
+		{
+			dust = m_dustManager->GetDust(cnt);
+
+			if(dust != nullptr)
+			{
+				if(m_player->HitMist(dust->GetPos()))
+				{
+					dust->SetDamege();
+					break;
+				}
+			}
+		}*/
 	}
 
 	//----------------------------
@@ -222,6 +247,20 @@ void CGame::Debug(void)
 			m_dcFlg = true;
 		}
 	}
+
+	if(m_keyboard->GetTrigger(DIK_B))
+	{
+		CDust* dust = NULL;
+		for(int cnt = 0;cnt < ENEMY_MAX; ++cnt)
+		{
+			dust = m_dustManager->GetDust(cnt);
+			if(dust != NULL)
+			{
+				dust->SetDamege();
+				break;
+			}
+		}
+	}
 }
 
 //=============================================================================
@@ -259,6 +298,9 @@ void CGame::InitObject(LPDIRECT3DDEVICE9 device)
 
 	// 敵
 	m_dustManager = CDustManager::Create(device);
+
+	m_billManager = new CBillManager();
+	m_billManager ->Init(device);
 }
 
 //=============================================================================

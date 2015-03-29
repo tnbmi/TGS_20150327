@@ -1,65 +1,77 @@
 //*****************************************************************************
 //
-// CDustManagerManagerクラス [dustManager.cpp]
-// Author : YUJI MOMOI
+// CManegerクラス [manager.cpp]
+// Author :MAI TANABE
 //
 //*****************************************************************************
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // インクルードファイル
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#include "dustManager.h"
-#include "dust.h"
-#include "import.h"
+#include "billManager.h"
+#include "bill.h"
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// マクロ定義
+// 静的変数
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+const D3DXVECTOR3 CBillManager::m_Pos[] =
+{
+	D3DXVECTOR3(0.0f,0.0f,0.0f),
+	D3DXVECTOR3(-200.0f,0.0f,400.0f),
+	D3DXVECTOR3(300.0f,0.0f,-200.0f),
+	D3DXVECTOR3(200.0f,0.0f,-200.0f),
+};
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// 敵の初期座標
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-static const D3DXVECTOR3 enemyPos[ENEMY_MAX] = {
-	D3DXVECTOR3(-100.0f,0.0f,-200.0f),
-	D3DXVECTOR3(-50.0f,0.0f,-200.0f),
-	D3DXVECTOR3(0.0f,0.0f,-200.0f),
-	D3DXVECTOR3(50.0f,0.0f,-200.0f),
-	D3DXVECTOR3(100.0f,0.0f,-200.0f),
+const D3DXVECTOR3 CBillManager::m_Rot[] =
+{
+	D3DXVECTOR3(0.0f,0.0f,0.0f),
+	D3DXVECTOR3(0.0f,0.0f,0.0f),
+	D3DXVECTOR3(0.0f,0.0f,0.0f),
+	D3DXVECTOR3(0.0f,0.0f,0.0f),
 };
 
 //=============================================================================
 // コンストラクタ
 //=============================================================================
-CDustManager::CDustManager()
+CBillManager::CBillManager(void)
 {
+	m_nNumBill = 0;
+	for( int nCntBill = 0; nCntBill < BILL_MAX;nCntBill++ )
+	{
+		m_pBill[nCntBill] = NULL;
+	}
+}
+
+//=============================================================================
+// デストラクタ
+//=============================================================================
+CBillManager::~CBillManager(void)
+{
+
 }
 
 //=============================================================================
 // 生成
 //=============================================================================
-CDustManager* CDustManager::Create(LPDIRECT3DDEVICE9 device)
+CBillManager* CBillManager::Create(LPDIRECT3DDEVICE9 device)
 {
-	CDustManager* pointer = new CDustManager;
-
+	CBillManager* pointer = new CBillManager;
 	pointer->Init(device);
-
 	return pointer;
 }
 
 //=============================================================================
 // 初期化
 //=============================================================================
-HRESULT CDustManager::Init(LPDIRECT3DDEVICE9 device)
+HRESULT CBillManager::Init(LPDIRECT3DDEVICE9 device)
 {
-	m_enemyMax = ENEMY_MAX;
-	m_enemyNum = ENEMY_MAX;
-
-	for(int cnt = 0; cnt < ENEMY_MAX; ++cnt)
+	int nNumBill = -1;
+	for( int nCntBill = 0; nCntBill < BILL_MAX; nCntBill++ )
 	{
-		m_DustArray[cnt] = CDust::Create(device,CImport::X_ENEMY);
-		m_DustArray[cnt] -> SetPos(enemyPos[cnt]);
-		m_DustArray[cnt]->SetSize(26.0f,30.0f,25.0f);
+		m_pBill[nCntBill] = CBill::Create(device,m_Pos[nCntBill],m_Rot[nCntBill],CImport::X_BILL);
+		nNumBill++;
 	}
+	m_nNumBill = nNumBill;
 
 	return S_OK;
 }
@@ -67,39 +79,22 @@ HRESULT CDustManager::Init(LPDIRECT3DDEVICE9 device)
 //=============================================================================
 // 終了
 //=============================================================================
-void CDustManager::Uninit(void)
+void CBillManager::Uninit(void)
 {
+
 }
 
 //=============================================================================
 // 更新
 //=============================================================================
-void CDustManager::Update(void)
+void CBillManager::Update(void)
 {
-}
 
-CDust* CDustManager::GetDust(int index)
-{
-	if(index < 0 || index + 1 > ENEMY_MAX)
-	{
-		return NULL;
-	}
-
-	if(m_DustArray[index] ->GetHP() <= 0)
-	{
-		return NULL;
-	}
-
-	return m_DustArray[index];
 }
 
 //=============================================================================
-// ダメージ処理
+// 描画
 //=============================================================================
-void CDustManager::Damage(int index)
+void CBillManager::Draw(void)
 {
-	if(index >= 0 && index < ENEMY_MAX)
-	{
-
-	}
 }

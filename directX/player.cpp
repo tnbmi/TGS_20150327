@@ -31,13 +31,16 @@
 
 #define STATE_MAX	(100)
 
+#define HIT_WIDTH	(5.0f)
+#define HIT_LEN		(150.0f)
+
 //=============================================================================
 // コンストラクタ
 //=============================================================================
 CPlayer::CPlayer(int priority, OBJTYPE objType) : CSceneX(priority, objType)
 {
 	m_rot  = D3DXVECTOR3(0.0f, D3DX_PI, 0.0f);
-	m_size = D3DXVECTOR3(5.0f, 20.0f, 5.0f);
+	m_size = D3DXVECTOR3(10.0f, 30.0f, 10.0f);
 
 	m_vecF = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
@@ -54,6 +57,7 @@ HRESULT CPlayer::Init(LPDIRECT3DDEVICE9 device)
 	//----------------------------
 	// 独自のリソース設定
 	//----------------------------
+	m_mist = false;
 
 	//----------------------------
 	// 親クラス初期化
@@ -178,6 +182,12 @@ void CPlayer::Update(void)
 			mistPos.y = m_pos.y + 25.0f;
 
 			CMist::Create(m_device, mistPos, m_vecF);
+
+			m_mist = true;
+		}
+		else
+		{
+			m_mist = false;
 		}
 
 	#ifdef _DEBUG
@@ -214,6 +224,7 @@ CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 device)
 
 	return scene;
 }
+
 //=============================================================================
 // 回転
 //=============================================================================
@@ -242,4 +253,42 @@ void CPlayer::SetRot(D3DXVECTOR3 rot)
 	D3DXVec3TransformCoord(&m_vecR, &m_vecR, &workMtx);
 	D3DXVec3Normalize(&m_vecF, &m_vecF);
 	D3DXVec3Normalize(&m_vecR, &m_vecR);
+}
+
+//=============================================================================
+// 放水当たり判定
+//=============================================================================
+bool CPlayer::HitMist(D3DXVECTOR3 pos)
+{
+	if(m_mist)
+	{
+		D3DXVECTOR3 mistPos;
+		mistPos.x = m_pos.x + m_vecF.x * 23.0f - m_vecR.x * 3.0f;
+		mistPos.z = m_pos.z + m_vecF.z * 23.0f - m_vecR.z * 3.0f;
+		mistPos.y = m_pos.y + 25.0f;
+
+		D3DXVECTOR3 hitPos[2];
+		hitPos[0].x = mistPos.x - m_vecR.x * HIT_WIDTH;
+		hitPos[0].z = mistPos.z - m_vecR.x * HIT_WIDTH;
+		hitPos[0].y = 0.0f;
+		hitPos[1].x = mistPos.x + m_vecF.x * HIT_LEN + m_vecR.x * HIT_WIDTH;
+		hitPos[1].z = mistPos.z + m_vecF.z * HIT_LEN + m_vecR.x * HIT_WIDTH;
+		hitPos[1].y = 0.0f;
+
+	#ifdef _DEBUG
+		CDebugproc::PrintDebugProc("***当たり判定情報******\n");
+		CDebugproc::PrintDebugProc("hitPosMin x:%f y:%f z:%f\n", hitPos[0].x, hitPos[0].y, hitPos[0].z);
+		CDebugproc::PrintDebugProc("hitPosMax x:%f y:%f z:%f\n", hitPos[1].x, hitPos[1].y, hitPos[1].z);
+	#endif
+
+		if((pos.x > hitPos[0].x && pos.x < hitPos[1].x)
+		&& (pos.z > hitPos[0].z && pos.z < hitPos[1].z))
+		{
+			CDebugproc::PrintDebugProc("HIT!!!!!!!!!\n");
+			return true;
+		}
+	}
+
+	CDebugproc::PrintDebugProc("NOT\n");
+	return false;
 }

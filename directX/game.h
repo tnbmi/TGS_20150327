@@ -28,6 +28,7 @@ class CLight;
 class CMeshField;
 class CPlayer;
 class CDustManager;
+class CBillManager;
 
 class CGame : CPhase
 {
@@ -41,6 +42,9 @@ public:
 	void	Draw(void);
 
 	static CCamera* GetCamera(void){return m_camera;}
+	static CPlayer* GetPlayer(void){return m_player;}
+	static CDustManager* GetDustManager(void){return m_dustManager;}
+	static CBillManager* GetBillManager(void){return m_billManager;}
 
 private:
 	void InitObject(LPDIRECT3DDEVICE9 device);
@@ -53,9 +57,10 @@ private:
 	bool	 m_dcFlg;
 	CCamera* m_debugCamera;
 
-	CMeshField*		m_field;
-	CPlayer*		m_player;
-	CDustManager*	m_dustManager;
+	CMeshField*			 m_field;
+	static CPlayer*		 m_player;
+	static CDustManager* m_dustManager;
+	static CBillManager* m_billManager;
 };
 
 //=============================================================================

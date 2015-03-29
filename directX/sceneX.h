@@ -33,6 +33,12 @@ public:
 	void		SetPos(D3DXVECTOR3 pos){m_pos = pos;}
 	void		SetPos(float x, float y, float z){m_pos = D3DXVECTOR3(x, y, z);}
 	D3DXVECTOR3	GetPos(void){return m_pos;}
+	void		SetPosDest(D3DXVECTOR3 pos){m_posDest = pos;}
+	void		SetPosDest(float x, float y, float z){m_posDest = D3DXVECTOR3(x, y, z);}
+	D3DXVECTOR3	GetPosDest(void){return m_posDest;}
+	void		SetPosOld(D3DXVECTOR3 pos){m_posOld = pos;}
+	void		SetPosOld(float x, float y, float z){m_posOld = D3DXVECTOR3(x, y, z);}
+	D3DXVECTOR3	GetPosOld(void){return m_posOld;}
 	void		SetRot(D3DXVECTOR3 rot){m_rot = rot;}
 	void		SetRot(float x, float y, float z){m_rot = D3DXVECTOR3(x, y, z);}
 	D3DXVECTOR3	GetRot(void){return m_rot;}
