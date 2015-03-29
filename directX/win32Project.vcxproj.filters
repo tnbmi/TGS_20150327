@@ -38,6 +38,9 @@
     <Filter Include="object\character\bill">
       <UniqueIdentifier>{1cc52710-4741-4b6f-b3f8-af735d4f33c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\character\player">
+      <UniqueIdentifier>{d585e5bf-1809-4b9d-b278-5579f7460118}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debugproc.cpp">
@@ -118,9 +121,6 @@
     <ClCompile Include="game.cpp">
       <Filter>phase</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>object\character</Filter>
-    </ClCompile>
     <ClCompile Include="dust.cpp">
       <Filter>object\character\dust</Filter>
     </ClCompile>
@@ -138,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="billManager.cpp">
       <Filter>object\character\bill</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>object\character\player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,9 +222,6 @@
     <ClInclude Include="game.h">
       <Filter>phase</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>object\character</Filter>
-    </ClInclude>
     <ClInclude Include="dust.h">
       <Filter>object\character\dust</Filter>
     </ClInclude>
@@ -239,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="billManager.h">
       <Filter>object\character\bill</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>object\character\player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
